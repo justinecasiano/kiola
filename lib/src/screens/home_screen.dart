@@ -1,7 +1,10 @@
 import 'package:flutter/material.dart';
-import '../widgets/dashboard.dart';
-import '../widgets/lesson.dart';
-import '../widgets/settings.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import '../extras/utils.dart';
+import '../models/navigation_cubit.dart';
+import 'dashboard_screen.dart';
+import 'lesson_screen.dart';
+import 'settings_screen.dart';
 import '../constants/values.dart' as values;
 import '../constants/colors.dart' as colors;
 import '../constants/icons.dart' as icons;
@@ -22,56 +25,50 @@ class _HomeScreenState extends State<HomeScreen> {
           ))
       .toList();
 
-  List<Widget> widgets = const [Dashboard(), Lesson(), Settings()];
-  int currentPageIndex = 0;
-
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
+    return SafeArea(child: BlocBuilder<NavigationCubit, int>(
+        builder: (BuildContext context, int state) {
+      return Scaffold(
         backgroundColor: colors.primaryShade,
-        body: widgets[currentPageIndex],
-        bottomNavigationBar: Padding(
-          padding: const EdgeInsets.only(bottom: 15, left: 15, right: 15),
-          child: ClipRRect(
-            borderRadius: BorderRadius.circular(values.medium),
-            child: CustomNavigationBar(
-                destinations: destinations,
-                getIndex: () => currentPageIndex,
-                setIndex: (int index) =>
-                    setState(() => currentPageIndex = index)),
-          ),
-        ));
+        body: IndexedStack(index: state, children: const [
+          DashboardScreen(),
+          LessonScreen(),
+          SettingsScreen()
+        ]),
+        extendBody: true,
+        bottomNavigationBar: Container(
+            color: Colors.transparent,
+            child: Padding(
+              padding: const EdgeInsets.only(bottom: 15, left: 15, right: 15),
+              child: ClipRRect(
+                borderRadius: BorderRadius.circular(values.medium),
+                child: CustomNavigationBar(destinations: destinations),
+              ),
+            )),
+      );
+    }));
   }
 }
 
-class CustomNavigationBar extends StatefulWidget {
+class CustomNavigationBar extends StatelessWidget {
   final List<NavigationDestination> destinations;
-  final Function() getIndex;
-  final Function(int) setIndex;
 
-  const CustomNavigationBar(
-      {super.key,
-      required this.destinations,
-      required this.getIndex,
-      required this.setIndex});
+  const CustomNavigationBar({super.key, required this.destinations});
 
-  @override
-  State<CustomNavigationBar> createState() => _CustomNavigationBarState();
-}
-
-class _CustomNavigationBarState extends State<CustomNavigationBar> {
   @override
   Widget build(BuildContext context) {
     return NavigationBar(
-      height: 45,
+      destinations: destinations,
+      height: Utils.appGetHeight(context, 7),
       backgroundColor: colors.accentDark,
       indicatorShape: null,
       indicatorColor: Colors.transparent,
       animationDuration: const Duration(milliseconds: 1000),
       labelBehavior: NavigationDestinationLabelBehavior.alwaysHide,
-      selectedIndex: widget.getIndex(),
-      destinations: widget.destinations,
-      onDestinationSelected: widget.setIndex,
+      selectedIndex: context.read<NavigationCubit>().state,
+      onDestinationSelected: (int index) =>
+          context.read<NavigationCubit>().updateIndex(index),
     );
   }
 }

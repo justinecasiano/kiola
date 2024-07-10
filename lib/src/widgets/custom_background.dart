@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import '../constants/values.dart' as values;
+import '../extras/utils.dart';
 
 class CustomBackground extends StatelessWidget {
   final Widget child;
@@ -9,12 +9,12 @@ class CustomBackground extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return SizedBox(
-      height: values.appGetHeight(context, 91),
+      height: Utils.appGetHeight(context, 93),
       child: ListView(children: [
         Stack(children: [
           SizedBox(
-            width: values.appGetWidth(context, 100),
-            height: values.appGetHeight(context, 35),
+            width: Utils.appGetWidth(context, 100),
+            height: 200,
             child: Image.asset('assets/images/custom-background.png',
                 fit: BoxFit.cover),
           ),
