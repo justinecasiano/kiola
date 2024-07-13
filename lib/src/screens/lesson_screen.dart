@@ -196,12 +196,18 @@ class PDFContent extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    String title = Utils.getLesson(context.read<LessonCubit>().state)['title'].toUpperCase();
+
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         const BackIcon(),
-        SfPdfViewer.asset(
-            'assets/modules/${Utils.getLesson(context.read<LessonCubit>().state).toUpperCase()}.pdf')
+        SizedBox(
+          width: Utils.appGetWidth(context, 100),
+          height: Utils.appGetHeight(context, 60),
+          child: SfPdfViewer.asset(
+              'assets/modules/$title.pdf'),
+        )
       ],
     );
   }
