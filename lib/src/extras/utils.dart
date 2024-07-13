@@ -1,3 +1,5 @@
+import 'dart:convert';
+
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 
@@ -15,25 +17,16 @@ class Utils {
         .format(DateTime.now().toUtc().add(const Duration(hours: 8)));
   }
 
-  static dynamic getLesson(int number) => {
-        1: {
-          'title': 'Introduction to Dance',
-        },
-        2: {
-          'title': 'Dance Related Injuries',
-        },
-        3: {
-          'title': 'Folk Dance in the Philippines',
-          'hasVideo': 'Video, ',
-        },
-        4: {
-          'title': 'Dancesport',
-        },
-        5: {
-          'title': 'Cheerdance',
-        },
-        6: {
-          'title': 'Hip-Hop and Street Dance',
-        }
-      }[number];
+  static int getSecondsSinceEpoch() {
+    return DateTime.now()
+            .toUtc()
+            .add(const Duration(hours: 8))
+            .millisecondsSinceEpoch ~/
+        Duration.millisecondsPerSecond;
+  }
+
+  static dynamic loadJson(BuildContext context, String path) async {
+    String data = await DefaultAssetBundle.of(context).loadString(path);
+    return jsonDecode(data);
+  }
 }

@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import '../extras/utils.dart';
-import '../models/navigation_cubit.dart';
+import '../models/cubits/navigation_cubit.dart';
 import 'dashboard_screen.dart';
 import 'lesson_screen.dart';
 import 'settings_screen.dart';
