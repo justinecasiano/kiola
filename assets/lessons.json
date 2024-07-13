@@ -1,0 +1,728 @@
+[
+    {
+        "number": 1,
+        "title": "Introduction to Dance",
+        "selectedContent": null,
+        "hasVideo": false,
+        "quiz": {
+            "currentQuestion": null,
+            "questions": [
+                {
+                    "question": "Space is very important when it comes to dance. What movements may be executed in high, medium, low?",
+                    "options": [
+                        "Focus",
+                        "Level",
+                        "Space",
+                        "Timing"
+                    ],
+                    "correctAnswer": 1,
+                    "remainingTime": 10
+                },
+                {
+                    "question": "Dancers require creativity, which helps them to express the music and story lines they dance to using unique body movements. Which Element of dance movements may be executed in different directions, levels and sizes?",
+                    "options": [
+                        "Focus",
+                        "Level",
+                        "Space",
+                        "Timing"
+                    ],
+                    "correctAnswer": 2,
+                    "remainingTime": 10
+                },
+                {
+                    "question": "Dance is more than exploring different ways to make a shape or learning a series of steps to music. Which element of dance focuses on the tempo and beat of music?",
+                    "options": [
+                        "Focus",
+                        "Level",
+                        "Space",
+                        "Timing"
+                    ],
+                    "correctAnswer": 3,
+                    "remainingTime": 10
+                },
+                {
+                    "question": "Which type of recreational activity involves a successive group of motions and steps rhythmically performed and timed to music?",
+                    "options": [
+                        "Arts",
+                        "Dance",
+                        "Motion",
+                        "Music"
+                    ],
+                    "correctAnswer": 1,
+                    "remainingTime": 10
+                },
+                {
+                    "question": "An injury is any physiological damage to living tissue caused by immediate physical stress. What exercise id performed before dancing to prevent dance related injuries?",
+                    "options": [
+                        "Cool Down",
+                        "Cool Up",
+                        "Warm Down",
+                        "Warm Up"
+                    ],
+                    "correctAnswer": 3,
+                    "remainingTime": 10
+                },
+                {
+                    "question": "Dancers learn to coordinate muscles to move through proper positions. What kind of bodily shape is observed where both sides show similar or identical movement?",
+                    "options": [
+                        "Asymmetrical",
+                        "Balance",
+                        "Group Shape",
+                        "Symmetrical"
+                    ],
+                    "correctAnswer": 3,
+                    "remainingTime": 10
+                },
+                {
+                    "question": "Energy choices may also reveal emotional states, for examples, a powerful push might be aggressive or playfully boisterous depending on the intent situation. Which of the following dance energy shows trembling and shaking movement?",
+                    "options": [
+                        "Collapsing",
+                        "Suspended",
+                        "Sustained",
+                        "Vibratory"
+                    ],
+                    "correctAnswer": 3,
+                    "remainingTime": 10
+                },
+                {
+                    "question": "Dancers are not just performing artist; their bodies are also the instrument through which the art is created. Which of dance energy shows movement that gradually releases tension and abruptly gives in to gravity, letting the body descend to the floor?",
+                    "options": [
+                        "Collapsing",
+                        "Suspended",
+                        "Sustained",
+                        "Vibratory"
+                    ],
+                    "correctAnswer": 0,
+                    "remainingTime": 10
+                },
+                {
+                    "question": "Dancers require creativity, which helps them to express the music and story lines they dance to using unique body movements. What do you call the skills in executing movement?",
+                    "options": [
+                        "Motion",
+                        "Movement",
+                        "Swinging",
+                        "Technique"
+                    ],
+                    "correctAnswer": 3,
+                    "remainingTime": 10
+                },
+                {
+                    "question": "Dance is a performing art from consisting of sequences of movement either improvised or purposefully selected. This movement has aesthetic and often symbolic value. What is the setting or background establishing the place of action of any dance is important to make the dance more realistic and beautiful?",
+                    "options": [
+                        "Design",
+                        "Proportion",
+                        "Scenery",
+                        "Technique"
+                    ],
+                    "correctAnswer": 2,
+                    "remainingTime": 10
+                }
+            ]
+        }
+    },
+    {
+        "number": 2,
+        "title": "Dance Related Injuries",
+        "selectedContent": null,
+        "hasVideo": false,
+        "quiz": {
+            "currentQuestion": null,
+            "questions": [
+                {
+                    "question": "Space is very important when it comes to dance. What movements may be executed in high, medium, low?",
+                    "options": [
+                        "Focus",
+                        "Level",
+                        "Space",
+                        "Timing"
+                    ],
+                    "correctAnswer": 1,
+                    "remainingTime": 10
+                },
+                {
+                    "question": "Dancers require creativity, which helps them to express the music and story lines they dance to using unique body movements. Which Element of dance movements may be executed in different directions, levels and sizes?",
+                    "options": [
+                        "Focus",
+                        "Level",
+                        "Space",
+                        "Timing"
+                    ],
+                    "correctAnswer": 2,
+                    "remainingTime": 10
+                },
+                {
+                    "question": "Dance is more than exploring different ways to make a shape or learning a series of steps to music. Which element of dance focuses on the tempo and beat of music?",
+                    "options": [
+                        "Focus",
+                        "Level",
+                        "Space",
+                        "Timing"
+                    ],
+                    "correctAnswer": 3,
+                    "remainingTime": 10
+                },
+                {
+                    "question": "Which type of recreational activity involves a successive group of motions and steps rhythmically performed and timed to music?",
+                    "options": [
+                        "Arts",
+                        "Dance",
+                        "Motion",
+                        "Music"
+                    ],
+                    "correctAnswer": 1,
+                    "remainingTime": 10
+                },
+                {
+                    "question": "An injury is any physiological damage to living tissue caused by immediate physical stress. What exercise id performed before dancing to prevent dance related injuries?",
+                    "options": [
+                        "Cool Down",
+                        "Cool Up",
+                        "Warm Down",
+                        "Warm Up"
+                    ],
+                    "correctAnswer": 3,
+                    "remainingTime": 10
+                },
+                {
+                    "question": "Dancers learn to coordinate muscles to move through proper positions. What kind of bodily shape is observed where both sides show similar or identical movement?",
+                    "options": [
+                        "Asymmetrical",
+                        "Balance",
+                        "Group Shape",
+                        "Symmetrical"
+                    ],
+                    "correctAnswer": 3,
+                    "remainingTime": 10
+                },
+                {
+                    "question": "Energy choices may also reveal emotional states, for examples, a powerful push might be aggressive or playfully boisterous depending on the intent situation. Which of the following dance energy shows trembling and shaking movement?",
+                    "options": [
+                        "Collapsing",
+                        "Suspended",
+                        "Sustained",
+                        "Vibratory"
+                    ],
+                    "correctAnswer": 3,
+                    "remainingTime": 10
+                },
+                {
+                    "question": "Dancers are not just performing artist; their bodies are also the instrument through which the art is created. Which of dance energy shows movement that gradually releases tension and abruptly gives in to gravity, letting the body descend to the floor?",
+                    "options": [
+                        "Collapsing",
+                        "Suspended",
+                        "Sustained",
+                        "Vibratory"
+                    ],
+                    "correctAnswer": 0,
+                    "remainingTime": 10
+                },
+                {
+                    "question": "Dancers require creativity, which helps them to express the music and story lines they dance to using unique body movements. What do you call the skills in executing movement?",
+                    "options": [
+                        "Motion",
+                        "Movement",
+                        "Swinging",
+                        "Technique"
+                    ],
+                    "correctAnswer": 3,
+                    "remainingTime": 10
+                },
+                {
+                    "question": "Dance is a performing art from consisting of sequences of movement either improvised or purposefully selected. This movement has aesthetic and often symbolic value. What is the setting or background establishing the place of action of any dance is important to make the dance more realistic and beautiful?",
+                    "options": [
+                        "Design",
+                        "Proportion",
+                        "Scenery",
+                        "Technique"
+                    ],
+                    "correctAnswer": 2,
+                    "remainingTime": 10
+                }
+            ]
+        }
+    },
+    {
+        "number": 3,
+        "title": "Folk Dance in the Philippines",
+        "selectedContent": null,
+        "hasVideo": true,
+        "quiz": {
+            "currentQuestion": null,
+            "questions": [
+                {
+                    "question": "Space is very important when it comes to dance. What movements may be executed in high, medium, low?",
+                    "options": [
+                        "Focus",
+                        "Level",
+                        "Space",
+                        "Timing"
+                    ],
+                    "correctAnswer": 1,
+                    "remainingTime": 10
+                },
+                {
+                    "question": "Dancers require creativity, which helps them to express the music and story lines they dance to using unique body movements. Which Element of dance movements may be executed in different directions, levels and sizes?",
+                    "options": [
+                        "Focus",
+                        "Level",
+                        "Space",
+                        "Timing"
+                    ],
+                    "correctAnswer": 2,
+                    "remainingTime": 10
+                },
+                {
+                    "question": "Dance is more than exploring different ways to make a shape or learning a series of steps to music. Which element of dance focuses on the tempo and beat of music?",
+                    "options": [
+                        "Focus",
+                        "Level",
+                        "Space",
+                        "Timing"
+                    ],
+                    "correctAnswer": 3,
+                    "remainingTime": 10
+                },
+                {
+                    "question": "Which type of recreational activity involves a successive group of motions and steps rhythmically performed and timed to music?",
+                    "options": [
+                        "Arts",
+                        "Dance",
+                        "Motion",
+                        "Music"
+                    ],
+                    "correctAnswer": 1,
+                    "remainingTime": 10
+                },
+                {
+                    "question": "An injury is any physiological damage to living tissue caused by immediate physical stress. What exercise id performed before dancing to prevent dance related injuries?",
+                    "options": [
+                        "Cool Down",
+                        "Cool Up",
+                        "Warm Down",
+                        "Warm Up"
+                    ],
+                    "correctAnswer": 3,
+                    "remainingTime": 10
+                },
+                {
+                    "question": "Dancers learn to coordinate muscles to move through proper positions. What kind of bodily shape is observed where both sides show similar or identical movement?",
+                    "options": [
+                        "Asymmetrical",
+                        "Balance",
+                        "Group Shape",
+                        "Symmetrical"
+                    ],
+                    "correctAnswer": 3,
+                    "remainingTime": 10
+                },
+                {
+                    "question": "Energy choices may also reveal emotional states, for examples, a powerful push might be aggressive or playfully boisterous depending on the intent situation. Which of the following dance energy shows trembling and shaking movement?",
+                    "options": [
+                        "Collapsing",
+                        "Suspended",
+                        "Sustained",
+                        "Vibratory"
+                    ],
+                    "correctAnswer": 3,
+                    "remainingTime": 10
+                },
+                {
+                    "question": "Dancers are not just performing artist; their bodies are also the instrument through which the art is created. Which of dance energy shows movement that gradually releases tension and abruptly gives in to gravity, letting the body descend to the floor?",
+                    "options": [
+                        "Collapsing",
+                        "Suspended",
+                        "Sustained",
+                        "Vibratory"
+                    ],
+                    "correctAnswer": 0,
+                    "remainingTime": 10
+                },
+                {
+                    "question": "Dancers require creativity, which helps them to express the music and story lines they dance to using unique body movements. What do you call the skills in executing movement?",
+                    "options": [
+                        "Motion",
+                        "Movement",
+                        "Swinging",
+                        "Technique"
+                    ],
+                    "correctAnswer": 3,
+                    "remainingTime": 10
+                },
+                {
+                    "question": "Dance is a performing art from consisting of sequences of movement either improvised or purposefully selected. This movement has aesthetic and often symbolic value. What is the setting or background establishing the place of action of any dance is important to make the dance more realistic and beautiful?",
+                    "options": [
+                        "Design",
+                        "Proportion",
+                        "Scenery",
+                        "Technique"
+                    ],
+                    "correctAnswer": 2,
+                    "remainingTime": 10
+                }
+            ]
+        }
+    },
+    {
+        "number": 4,
+        "title": "Dancesport",
+        "selectedContent": null,
+        "hasVideo": false,
+        "quiz": {
+            "currentQuestion": null,
+            "questions": [
+                {
+                    "question": "Space is very important when it comes to dance. What movements may be executed in high, medium, low?",
+                    "options": [
+                        "Focus",
+                        "Level",
+                        "Space",
+                        "Timing"
+                    ],
+                    "correctAnswer": 1,
+                    "remainingTime": 10
+                },
+                {
+                    "question": "Dancers require creativity, which helps them to express the music and story lines they dance to using unique body movements. Which Element of dance movements may be executed in different directions, levels and sizes?",
+                    "options": [
+                        "Focus",
+                        "Level",
+                        "Space",
+                        "Timing"
+                    ],
+                    "correctAnswer": 2,
+                    "remainingTime": 10
+                },
+                {
+                    "question": "Dance is more than exploring different ways to make a shape or learning a series of steps to music. Which element of dance focuses on the tempo and beat of music?",
+                    "options": [
+                        "Focus",
+                        "Level",
+                        "Space",
+                        "Timing"
+                    ],
+                    "correctAnswer": 3,
+                    "remainingTime": 10
+                },
+                {
+                    "question": "Which type of recreational activity involves a successive group of motions and steps rhythmically performed and timed to music?",
+                    "options": [
+                        "Arts",
+                        "Dance",
+                        "Motion",
+                        "Music"
+                    ],
+                    "correctAnswer": 1,
+                    "remainingTime": 10
+                },
+                {
+                    "question": "An injury is any physiological damage to living tissue caused by immediate physical stress. What exercise id performed before dancing to prevent dance related injuries?",
+                    "options": [
+                        "Cool Down",
+                        "Cool Up",
+                        "Warm Down",
+                        "Warm Up"
+                    ],
+                    "correctAnswer": 3,
+                    "remainingTime": 10
+                },
+                {
+                    "question": "Dancers learn to coordinate muscles to move through proper positions. What kind of bodily shape is observed where both sides show similar or identical movement?",
+                    "options": [
+                        "Asymmetrical",
+                        "Balance",
+                        "Group Shape",
+                        "Symmetrical"
+                    ],
+                    "correctAnswer": 3,
+                    "remainingTime": 10
+                },
+                {
+                    "question": "Energy choices may also reveal emotional states, for examples, a powerful push might be aggressive or playfully boisterous depending on the intent situation. Which of the following dance energy shows trembling and shaking movement?",
+                    "options": [
+                        "Collapsing",
+                        "Suspended",
+                        "Sustained",
+                        "Vibratory"
+                    ],
+                    "correctAnswer": 3,
+                    "remainingTime": 10
+                },
+                {
+                    "question": "Dancers are not just performing artist; their bodies are also the instrument through which the art is created. Which of dance energy shows movement that gradually releases tension and abruptly gives in to gravity, letting the body descend to the floor?",
+                    "options": [
+                        "Collapsing",
+                        "Suspended",
+                        "Sustained",
+                        "Vibratory"
+                    ],
+                    "correctAnswer": 0,
+                    "remainingTime": 10
+                },
+                {
+                    "question": "Dancers require creativity, which helps them to express the music and story lines they dance to using unique body movements. What do you call the skills in executing movement?",
+                    "options": [
+                        "Motion",
+                        "Movement",
+                        "Swinging",
+                        "Technique"
+                    ],
+                    "correctAnswer": 3,
+                    "remainingTime": 10
+                },
+                {
+                    "question": "Dance is a performing art from consisting of sequences of movement either improvised or purposefully selected. This movement has aesthetic and often symbolic value. What is the setting or background establishing the place of action of any dance is important to make the dance more realistic and beautiful?",
+                    "options": [
+                        "Design",
+                        "Proportion",
+                        "Scenery",
+                        "Technique"
+                    ],
+                    "correctAnswer": 2,
+                    "remainingTime": 10
+                }
+            ]
+        }
+    },
+    {
+        "number": 5,
+        "title": "Cheerdance",
+        "selectedContent": null,
+        "hasVideo": false,
+        "quiz": {
+            "currentQuestion": null,
+            "questions": [
+                {
+                    "question": "Space is very important when it comes to dance. What movements may be executed in high, medium, low?",
+                    "options": [
+                        "Focus",
+                        "Level",
+                        "Space",
+                        "Timing"
+                    ],
+                    "correctAnswer": 1,
+                    "remainingTime": 10
+                },
+                {
+                    "question": "Dancers require creativity, which helps them to express the music and story lines they dance to using unique body movements. Which Element of dance movements may be executed in different directions, levels and sizes?",
+                    "options": [
+                        "Focus",
+                        "Level",
+                        "Space",
+                        "Timing"
+                    ],
+                    "correctAnswer": 2,
+                    "remainingTime": 10
+                },
+                {
+                    "question": "Dance is more than exploring different ways to make a shape or learning a series of steps to music. Which element of dance focuses on the tempo and beat of music?",
+                    "options": [
+                        "Focus",
+                        "Level",
+                        "Space",
+                        "Timing"
+                    ],
+                    "correctAnswer": 3,
+                    "remainingTime": 10
+                },
+                {
+                    "question": "Which type of recreational activity involves a successive group of motions and steps rhythmically performed and timed to music?",
+                    "options": [
+                        "Arts",
+                        "Dance",
+                        "Motion",
+                        "Music"
+                    ],
+                    "correctAnswer": 1,
+                    "remainingTime": 10
+                },
+                {
+                    "question": "An injury is any physiological damage to living tissue caused by immediate physical stress. What exercise id performed before dancing to prevent dance related injuries?",
+                    "options": [
+                        "Cool Down",
+                        "Cool Up",
+                        "Warm Down",
+                        "Warm Up"
+                    ],
+                    "correctAnswer": 3,
+                    "remainingTime": 10
+                },
+                {
+                    "question": "Dancers learn to coordinate muscles to move through proper positions. What kind of bodily shape is observed where both sides show similar or identical movement?",
+                    "options": [
+                        "Asymmetrical",
+                        "Balance",
+                        "Group Shape",
+                        "Symmetrical"
+                    ],
+                    "correctAnswer": 3,
+                    "remainingTime": 10
+                },
+                {
+                    "question": "Energy choices may also reveal emotional states, for examples, a powerful push might be aggressive or playfully boisterous depending on the intent situation. Which of the following dance energy shows trembling and shaking movement?",
+                    "options": [
+                        "Collapsing",
+                        "Suspended",
+                        "Sustained",
+                        "Vibratory"
+                    ],
+                    "correctAnswer": 3,
+                    "remainingTime": 10
+                },
+                {
+                    "question": "Dancers are not just performing artist; their bodies are also the instrument through which the art is created. Which of dance energy shows movement that gradually releases tension and abruptly gives in to gravity, letting the body descend to the floor?",
+                    "options": [
+                        "Collapsing",
+                        "Suspended",
+                        "Sustained",
+                        "Vibratory"
+                    ],
+                    "correctAnswer": 0,
+                    "remainingTime": 10
+                },
+                {
+                    "question": "Dancers require creativity, which helps them to express the music and story lines they dance to using unique body movements. What do you call the skills in executing movement?",
+                    "options": [
+                        "Motion",
+                        "Movement",
+                        "Swinging",
+                        "Technique"
+                    ],
+                    "correctAnswer": 3,
+                    "remainingTime": 10
+                },
+                {
+                    "question": "Dance is a performing art from consisting of sequences of movement either improvised or purposefully selected. This movement has aesthetic and often symbolic value. What is the setting or background establishing the place of action of any dance is important to make the dance more realistic and beautiful?",
+                    "options": [
+                        "Design",
+                        "Proportion",
+                        "Scenery",
+                        "Technique"
+                    ],
+                    "correctAnswer": 2,
+                    "remainingTime": 10
+                }
+            ]
+        }
+    },
+    {
+        "number": 6,
+        "title": "Hip-Hop and Street Dance",
+        "selectedContent": null,
+        "hasVideo": false,
+        "quiz": {
+            "currentQuestion": null,
+            "questions": [
+                {
+                    "question": "Space is very important when it comes to dance. What movements may be executed in high, medium, low?",
+                    "options": [
+                        "Focus",
+                        "Level",
+                        "Space",
+                        "Timing"
+                    ],
+                    "correctAnswer": 1,
+                    "remainingTime": 10
+                },
+                {
+                    "question": "Dancers require creativity, which helps them to express the music and story lines they dance to using unique body movements. Which Element of dance movements may be executed in different directions, levels and sizes?",
+                    "options": [
+                        "Focus",
+                        "Level",
+                        "Space",
+                        "Timing"
+                    ],
+                    "correctAnswer": 2,
+                    "remainingTime": 10
+                },
+                {
+                    "question": "Dance is more than exploring different ways to make a shape or learning a series of steps to music. Which element of dance focuses on the tempo and beat of music?",
+                    "options": [
+                        "Focus",
+                        "Level",
+                        "Space",
+                        "Timing"
+                    ],
+                    "correctAnswer": 3,
+                    "remainingTime": 10
+                },
+                {
+                    "question": "Which type of recreational activity involves a successive group of motions and steps rhythmically performed and timed to music?",
+                    "options": [
+                        "Arts",
+                        "Dance",
+                        "Motion",
+                        "Music"
+                    ],
+                    "correctAnswer": 1,
+                    "remainingTime": 10
+                },
+                {
+                    "question": "An injury is any physiological damage to living tissue caused by immediate physical stress. What exercise id performed before dancing to prevent dance related injuries?",
+                    "options": [
+                        "Cool Down",
+                        "Cool Up",
+                        "Warm Down",
+                        "Warm Up"
+                    ],
+                    "correctAnswer": 3,
+                    "remainingTime": 10
+                },
+                {
+                    "question": "Dancers learn to coordinate muscles to move through proper positions. What kind of bodily shape is observed where both sides show similar or identical movement?",
+                    "options": [
+                        "Asymmetrical",
+                        "Balance",
+                        "Group Shape",
+                        "Symmetrical"
+                    ],
+                    "correctAnswer": 3,
+                    "remainingTime": 10
+                },
+                {
+                    "question": "Energy choices may also reveal emotional states, for examples, a powerful push might be aggressive or playfully boisterous depending on the intent situation. Which of the following dance energy shows trembling and shaking movement?",
+                    "options": [
+                        "Collapsing",
+                        "Suspended",
+                        "Sustained",
+                        "Vibratory"
+                    ],
+                    "correctAnswer": 3,
+                    "remainingTime": 10
+                },
+                {
+                    "question": "Dancers are not just performing artist; their bodies are also the instrument through which the art is created. Which of dance energy shows movement that gradually releases tension and abruptly gives in to gravity, letting the body descend to the floor?",
+                    "options": [
+                        "Collapsing",
+                        "Suspended",
+                        "Sustained",
+                        "Vibratory"
+                    ],
+                    "correctAnswer": 0,
+                    "remainingTime": 10
+                },
+                {
+                    "question": "Dancers require creativity, which helps them to express the music and story lines they dance to using unique body movements. What do you call the skills in executing movement?",
+                    "options": [
+                        "Motion",
+                        "Movement",
+                        "Swinging",
+                        "Technique"
+                    ],
+                    "correctAnswer": 3,
+                    "remainingTime": 10
+                },
+                {
+                    "question": "Dance is a performing art from consisting of sequences of movement either improvised or purposefully selected. This movement has aesthetic and often symbolic value. What is the setting or background establishing the place of action of any dance is important to make the dance more realistic and beautiful?",
+                    "options": [
+                        "Design",
+                        "Proportion",
+                        "Scenery",
+                        "Technique"
+                    ],
+                    "correctAnswer": 2,
+                    "remainingTime": 10
+                }
+            ]
+        }
+    }
+]

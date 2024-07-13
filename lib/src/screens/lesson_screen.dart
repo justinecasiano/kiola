@@ -3,8 +3,8 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:learning_management_system/src/widgets/rounded_container.dart';
 import 'package:syncfusion_flutter_pdfviewer/pdfviewer.dart';
 import '../extras/utils.dart';
-import '../models/content_cubit.dart';
-import '../models/lesson_cubit.dart';
+import '../models/cubits/lesson_cubit.dart';
+import '../models/lesson.dart';
 import '../widgets/custom_background.dart';
 import '../constants/values.dart' as values;
 import '../constants/colors.dart' as colors;
@@ -14,7 +14,7 @@ class LessonScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    String? state = context.watch<ContentCubit>().state;
+    Lesson? lesson = context.watch<LessonCubit>().state;
 
     return const CustomBackground(
         child: Padding(
@@ -27,23 +27,25 @@ class LessonScreen extends StatelessWidget {
 class Header extends StatelessWidget {
   const Header({super.key});
 
-  dynamic getContentTitle(BuildContext context, int lesson, String? content) {
-    String lessonTitle = Utils.getLesson(lesson)['title'].toUpperCase();
+  dynamic getContentTitle(BuildContext context, Lesson? lesson) {
+    String? content = context.read<LessonCubit>().getContent();
+    String title = lesson!.title.toUpperCase();
+    int number = lesson.number;
 
     return content == null
-        ? lessonTitle
+        ? title
         : {
-            'pdf': '$lessonTitle - PDF',
-            'ppt': '$lessonTitle - PPT',
-            'video': '$lessonTitle - Video',
-            'quiz': 'Quiz $lesson - $lessonTitle'
+            'pdf': '$title - PDF',
+            'ppt': '$title - PPT',
+            'video': '$title - Video',
+            'quiz': 'Quiz for $title'
           }[content];
   }
 
   @override
   Widget build(BuildContext context) {
-    int lesson = context.watch<LessonCubit>().state;
-    String? content = context.watch<ContentCubit>().state;
+    Lesson? lesson = context.watch<LessonCubit>().state;
+    int? number = context.watch<LessonCubit>().state!.number;
 
     return Padding(
       padding: const EdgeInsets.only(
@@ -60,7 +62,7 @@ class Header extends StatelessWidget {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Text(
-                      'Lesson $lesson',
+                      'Lesson $number',
                       style: values.getTextStyle(context, 'titleLarge',
                           color: colors.primary, weight: FontWeight.w700),
                     ),
@@ -95,7 +97,7 @@ class Header extends StatelessWidget {
           child: FittedBox(
             fit: BoxFit.fitWidth,
             child: Text(
-              getContentTitle(context, lesson, content),
+              getContentTitle(context, lesson),
               textAlign: TextAlign.center,
               style: values.getTextStyle(context, 'titleLarge',
                   color: colors.primary, weight: FontWeight.w600),
@@ -112,19 +114,22 @@ class Contents extends StatelessWidget {
   const Contents({super.key});
 
   dynamic getContent(String? content) {
-    const lessonContents = {
-      'pdf': PDFContent(),
-      'ppt': PPTContent(),
-      'video': VideoContent(),
-      'quiz': QuizContent()
-    };
-
-    return content == null ? const DefaultContent() : lessonContents[content];
+    return content == null
+        ? const DefaultContent()
+        : const {
+            'pdf': PDFContent(),
+            'ppt': PPTContent(),
+            'video': VideoContent(),
+            'quiz': QuizContent()
+          }[content];
   }
 
   @override
   Widget build(BuildContext context) {
-    String? content = context.watch<ContentCubit>().state;
+    Lesson? lesson = context.watch<LessonCubit>().state;
+    String? content = context.read<LessonCubit>().getContent();
+
+    print('Content: $content');
 
     return Container(
       decoration: BoxDecoration(
@@ -132,8 +137,9 @@ class Contents extends StatelessWidget {
         borderRadius: BorderRadius.circular(values.medium),
       ),
       child: Padding(
-          padding: const EdgeInsets.all(values.medium),
-          child: getContent(content)),
+        padding: const EdgeInsets.all(values.medium),
+        child: getContent(context.read<LessonCubit>().getContent()),
+      ),
     );
   }
 }
@@ -142,13 +148,13 @@ class DefaultContent extends StatelessWidget {
   const DefaultContent({super.key});
 
   List<Widget> hasVideo(BuildContext context) {
-    int lesson = context.read<LessonCubit>().state;
+    Lesson? lesson = context.read<LessonCubit>().state;
 
-    return (Utils.getLesson(lesson)['hasVideo'] != null)
+    return (lesson.hasVideo)
         ? [
             const SizedBox(height: values.medium),
             ContentCard(
-                title: 'Video for ${Utils.getLesson(lesson)['title']}',
+                title: 'Video for ${lesson.title}',
                 thumbnail: 'content/content-3.png',
                 onTap: onTap(context, 'video'))
           ]
@@ -157,14 +163,15 @@ class DefaultContent extends StatelessWidget {
 
   Function() onTap(BuildContext context, String content) {
     return () {
-      context.read<ContentCubit>().setContent(content);
+      context.read<LessonCubit>().setContent(content);
+      print(context.read<LessonCubit>().getContent());
     };
   }
 
   @override
   Widget build(BuildContext context) {
-    int lesson = context.watch<LessonCubit>().state;
-    String title = Utils.getLesson(lesson)['title'];
+    Lesson? lesson = context.watch<LessonCubit>().state;
+    String title = lesson!.title;
 
     return Column(
       children: [
@@ -196,18 +203,18 @@ class PDFContent extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    String title = Utils.getLesson(context.read<LessonCubit>().state)['title'].toUpperCase();
+    Lesson? lesson = context.watch<LessonCubit>().state;
+    String title = context.read<LessonCubit>().state.title.toUpperCase();
 
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         const BackIcon(),
+        const SizedBox(height: values.small),
         SizedBox(
-          width: Utils.appGetWidth(context, 100),
-          height: Utils.appGetHeight(context, 60),
-          child: SfPdfViewer.asset(
-              'assets/modules/$title.pdf'),
-        )
+            width: Utils.appGetWidth(context, 100),
+            height: Utils.appGetWidth(context, 100),
+            child: SfPdfViewer.asset('assets/modules/$title.pdf')),
       ],
     );
   }
@@ -244,7 +251,9 @@ class QuizContent extends StatelessWidget {
   Widget build(BuildContext context) {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
-      children: [BackIcon()],
+      children: [
+        BackIcon(),
+      ],
     );
   }
 }
@@ -284,7 +293,7 @@ class ContentCard extends StatelessWidget {
                   const SizedBox(height: 95),
                   RoundedContainer(children: [
                     Text(
-                      'Lesson ${context.read<LessonCubit>().state}',
+                      'Lesson ${context.read<LessonCubit>().state!.number}',
                       textAlign: TextAlign.center,
                       style: values.getTextStyle(context, 'titleSmall',
                           color: colors.accentDark, weight: FontWeight.w600),
@@ -314,7 +323,8 @@ class BackIcon extends StatelessWidget {
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: () {
-        context.read<ContentCubit>().setContent(null);
+        context.read<LessonCubit>().setContent(null);
+        print(context.read<LessonCubit>().getContent());
       },
       child: const Icon(
         Icons.arrow_back_rounded,

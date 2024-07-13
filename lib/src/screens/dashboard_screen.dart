@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import '../models/content_cubit.dart';
-import '../models/lesson_cubit.dart';
-import '../models/navigation_cubit.dart';
+import '../models/cubits/lesson_cubit.dart';
+import '../models/cubits/navigation_cubit.dart';
+import '../models/lesson.dart';
 import '../widgets/custom_background.dart';
 import '../widgets/rounded_container.dart';
 import '../extras/utils.dart';
@@ -222,11 +222,12 @@ class LessonCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    Lesson? lesson = context.watch<LessonCubit>().state;
+
     return GestureDetector(
         onTap: () {
           context.read<LessonCubit>().setLesson(number);
           context.read<NavigationCubit>().updateIndex(1);
-          context.read<ContentCubit>().setContent(null);
         },
         child: Padding(
           padding: const EdgeInsets.only(top: values.medium),
@@ -288,7 +289,7 @@ class LessonCard extends StatelessWidget {
                             height: values.small,
                           ),
                           Text(
-                            '${Utils.getLesson(number)['title']}'.toUpperCase(),
+                            lesson!.title.toUpperCase(),
                             style: values.getTextStyle(context, 'titleLarge',
                                 color: colors.secondary,
                                 weight: FontWeight.normal),
@@ -306,7 +307,7 @@ class LessonCard extends StatelessWidget {
                             height: values.small,
                           ),
                           Text(
-                            'Module, Powerpoint, ${Utils.getLesson(number)['hasVideo'] ?? ''}Quiz',
+                            'Module, Powerpoint, ${lesson!.hasVideo ? 'Video, ' : ''}Quiz',
                             style: values.getTextStyle(context, 'bodySmall',
                                 color: colors.accentLighter,
                                 weight: FontWeight.normal),
