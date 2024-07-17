@@ -3,7 +3,7 @@ import 'quiz.dart';
 class Lesson {
   final int number;
   final String title;
-  String? selectedContent;
+  String selectedContent;
   final bool hasVideo;
   final Quiz quiz;
 

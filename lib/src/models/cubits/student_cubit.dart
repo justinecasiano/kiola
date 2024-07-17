@@ -14,7 +14,7 @@ class StudentCubit extends Cubit<Student> {
   }
 
   void setLessonProgress(BuildContext context, int number) {
-    int percent = context.read<LessonCubit>().getContentPercentage();
+    double percent = context.read<LessonCubit>().getContentPercentage();
     Student student = state.copyWith();
     student.lessonStanding[number].progress += percent;
     emit(student);
@@ -25,7 +25,7 @@ class StudentCubit extends Cubit<Student> {
     for (var standing in student.lessonStanding) {
       student.overallProgress += standing.progress;
     }
-    student.overallProgress ~/= student.lessonStanding.length;
+    student.overallProgress /= student.lessonStanding.length;
     emit(student);
   }
 }

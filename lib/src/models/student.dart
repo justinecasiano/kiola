@@ -6,7 +6,7 @@ class Student {
   final String? email;
   final int? lastSaved;
   List<LessonStanding> lessonStanding;
-  int overallProgress;
+  double overallProgress;
 
   Student({
     required this.username,
@@ -40,7 +40,7 @@ class Student {
     String? email,
     int? lastSaved,
     List<LessonStanding>? lessonStanding,
-    int? overallProgress,
+    double? overallProgress,
   }) {
     return Student(
       username: username ?? this.username,

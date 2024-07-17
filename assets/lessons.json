@@ -2,7 +2,7 @@
     {
         "number": 1,
         "title": "Introduction to Dance",
-        "selectedContent": null,
+        "selectedContent": "default",
         "hasVideo": false,
         "quiz": {
             "currentQuestion": null,
@@ -123,7 +123,7 @@
     {
         "number": 2,
         "title": "Dance Related Injuries",
-        "selectedContent": null,
+        "selectedContent": "default",
         "hasVideo": false,
         "quiz": {
             "currentQuestion": null,
@@ -244,7 +244,7 @@
     {
         "number": 3,
         "title": "Folk Dance in the Philippines",
-        "selectedContent": null,
+        "selectedContent": "default",
         "hasVideo": true,
         "quiz": {
             "currentQuestion": null,
@@ -365,7 +365,7 @@
     {
         "number": 4,
         "title": "Dancesport",
-        "selectedContent": null,
+        "selectedContent": "default",
         "hasVideo": false,
         "quiz": {
             "currentQuestion": null,
@@ -486,7 +486,7 @@
     {
         "number": 5,
         "title": "Cheerdance",
-        "selectedContent": null,
+        "selectedContent": "default",
         "hasVideo": false,
         "quiz": {
             "currentQuestion": null,
@@ -607,7 +607,7 @@
     {
         "number": 6,
         "title": "Hip-Hop and Street Dance",
-        "selectedContent": null,
+        "selectedContent": "default",
         "hasVideo": false,
         "quiz": {
             "currentQuestion": null,

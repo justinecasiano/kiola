@@ -2,7 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import '../models/cubits/lesson_cubit.dart';
 import '../models/cubits/navigation_cubit.dart';
+import '../models/cubits/student_cubit.dart';
 import '../models/lesson.dart';
+import '../models/student.dart';
 import '../widgets/custom_background.dart';
 import '../widgets/rounded_container.dart';
 import '../extras/utils.dart';
@@ -15,16 +17,29 @@ class DashboardScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const CustomBackground(
+    return CustomBackground(
         child: Padding(
-      padding: EdgeInsets.symmetric(horizontal: values.medium),
-      child: Column(children: [Header(), DashboardInfo(), Lessons()]),
+      padding: const EdgeInsets.symmetric(horizontal: values.medium),
+      child: Column(children: [
+        BlocBuilder<StudentCubit, Student>(
+          builder: (BuildContext context, Student state) {
+            return Header(student: state);
+          },
+        ),
+        BlocBuilder<StudentCubit, Student>(
+          builder: (BuildContext context, Student state) {
+            return DashboardInfo(student: state);
+          },
+        ),
+        const Lessons()
+      ]),
     ));
   }
 }
 
 class Header extends StatelessWidget {
-  const Header({super.key});
+  final Student? student;
+  const Header({super.key, required this.student});
 
   @override
   Widget build(BuildContext context) {
@@ -36,10 +51,14 @@ class Header extends StatelessWidget {
           right: values.small - 3),
       child: Row(children: [
         Expanded(
-          child: Text(
-            'Welcome, Mark',
-            style: values.getTextStyle(context, 'titleLarge',
-                color: colors.primary, weight: FontWeight.w700),
+          child: FittedBox(
+            fit: BoxFit.scaleDown,
+            alignment: Alignment.topLeft,
+            child: Text(
+              'Welcome, ${student!.username}',
+              style: values.getTextStyle(context, 'titleLarge',
+                  color: colors.primary, weight: FontWeight.w700),
+            ),
           ),
         ),
         IconButton(
@@ -58,17 +77,20 @@ class Header extends StatelessWidget {
 }
 
 class DashboardInfo extends StatelessWidget {
-  const DashboardInfo({super.key});
+  final Student? student;
+  const DashboardInfo({super.key, required this.student});
 
   @override
   Widget build(BuildContext context) {
+    int overallProgress = student!.overallProgress.round();
+
     return Container(
         decoration: BoxDecoration(
           color: colors.primary,
           borderRadius: BorderRadius.circular(values.medium),
         ),
         child: Padding(
-          padding: const EdgeInsets.all(values.small + 7),
+          padding: const EdgeInsets.all(values.medium),
           child: Row(
             children: [
               SizedBox(
@@ -102,45 +124,53 @@ class DashboardInfo extends StatelessWidget {
                         Row(
                           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                           children: [
-                            RoundedContainer(children: [
-                              Text(
-                                '100%',
-                                textAlign: TextAlign.center,
-                                style: values.getTextStyle(
-                                    context, 'titleLarge',
-                                    color: colors.accentLight,
-                                    weight: FontWeight.bold),
-                              ),
-                              const SizedBox(height: values.small - 6),
-                              Text(
-                                'Pending',
-                                textAlign: TextAlign.center,
-                                style: values.getTextStyle(context, 'bodySmall',
-                                    color: colors.secondary,
-                                    weight: FontWeight.w500),
-                              ),
-                            ]),
+                            Expanded(
+                              child: RoundedContainer(children: [
+                                Text(
+                                  '${100 - overallProgress}%',
+                                  textAlign: TextAlign.center,
+                                  style: values.getTextStyle(
+                                      context, 'titleLarge',
+                                      color: colors.accentLight,
+                                      weight: FontWeight.bold),
+                                ),
+                                const SizedBox(height: values.small - 6),
+                                Text(
+                                  'Pending',
+                                  textAlign: TextAlign.center,
+                                  style: values.getTextStyle(
+                                      context, 'bodySmall',
+                                      color: colors.secondary,
+                                      weight: FontWeight.w500),
+                                ),
+                              ]),
+                            ),
                             const SizedBox(
                               width: values.small - 5,
                             ),
-                            RoundedContainer(children: [
-                              Text(
-                                '0%',
-                                textAlign: TextAlign.center,
-                                style: values.getTextStyle(
-                                    context, 'titleLarge',
-                                    color: colors.accentLight,
-                                    weight: FontWeight.bold),
-                              ),
-                              const SizedBox(height: values.small - 6),
-                              Text(
-                                'Completed',
-                                textAlign: TextAlign.center,
-                                style: values.getTextStyle(context, 'bodySmall',
-                                    color: colors.secondary,
-                                    weight: FontWeight.w500),
-                              ),
-                            ]),
+                            Expanded(
+                              child: RoundedContainer(children: [
+                                Text(
+                                  '$overallProgress%',
+                                  textAlign: TextAlign.center,
+                                  style: values.getTextStyle(
+                                      context, 'titleLarge',
+                                      color: colors.accentLight,
+                                      weight: FontWeight.bold),
+                                ),
+                                const SizedBox(height: values.small - 6),
+                                FittedBox(
+                                  child: Text(
+                                    'Completed',
+                                    textAlign: TextAlign.center,
+                                    style: values.getTextStyle(
+                                        context, 'bodySmall',
+                                        color: colors.secondary,
+                                        weight: FontWeight.w500),
+                                  ),
+                                ),
+                              ]),
+                            ),
                           ],
                         )
                       ])),
@@ -152,7 +182,7 @@ class DashboardInfo extends StatelessWidget {
                           vertical: values.small + 3),
                       children: [
                         Text(
-                          '0%',
+                          '$overallProgress%',
                           textAlign: TextAlign.center,
                           style: values.getTextStyle(context, 'headlineLarge',
                               color: colors.accentLight,
@@ -222,7 +252,10 @@ class LessonCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    Lesson? lesson = context.watch<LessonCubit>().state;
+    Lesson? lesson = context
+        .read<LessonCubit>()
+        .lessons
+        .firstWhere((lesson) => lesson.number == number);
 
     return GestureDetector(
         onTap: () {
@@ -238,6 +271,7 @@ class LessonCard extends StatelessWidget {
                 Stack(
                   children: [
                     SizedBox(
+                      width: Utils.appGetWidth(context, 100),
                       height: 115,
                       child: Image.asset(
                         fit: BoxFit.cover,
