@@ -1,5 +1,3 @@
-import 'dart:developer';
-
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -31,7 +29,7 @@ class _AppState extends State<App> {
     try {
       List result = await Future.wait([
         Utils.loadJson(context, 'assets/lessons.json'),
-        Utils.loadJson(context, 'assets/student.json')
+        Utils.loadJson(context, 'assets/student.json'),
       ]);
 
       lessons = (result[0] as List<dynamic>)
@@ -49,17 +47,26 @@ class _AppState extends State<App> {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       title: 'Kiola',
+      routes: {
+        '/splash': (context) => const SplashScreen(),
+      },
       home: FutureBuilder(
           future: initialize(context),
           builder: (context, snapshot) {
             if (snapshot.hasData) {
               print('lesson and user data are successfully loaded');
 
-              return MultiBlocProvider(providers: [
-                BlocProvider(create: (_) => NavigationCubit()),
-                BlocProvider(create: (_) => LessonCubit(lessons: lessons)),
-                BlocProvider(create: (_) => StudentCubit(student!)),
-              ], child: const HomeScreen());
+              return MultiBlocProvider(
+                  providers: [
+                    BlocProvider(create: (_) => NavigationCubit()),
+                    BlocProvider(create: (_) => LessonCubit(lessons: lessons)),
+                    BlocProvider(create: (_) => StudentCubit(student!)),
+                  ],
+                  child: BlocBuilder<StudentCubit, Student>(
+                    builder: (BuildContext context, Student state) {
+                      return const HomeScreen();
+                    },
+                  ));
             } else if (snapshot.hasError) {
               return Center(
                   child: Text(
@@ -74,9 +81,6 @@ class _AppState extends State<App> {
               );
             }
           }),
-      routes: {
-        '/splash': (context) => const SplashScreen(),
-      },
       theme: ThemeData(
         fontFamily: GoogleFonts.poppins().fontFamily,
       ),

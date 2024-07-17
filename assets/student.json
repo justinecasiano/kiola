@@ -2,12 +2,12 @@
     "username": null,
     "email": null,
     "lastSaved": null,
-    "overallProgress": 0,
+    "overallProgress": 0.0,
     "lessonStanding": [
         {
             "number": 1,
             "score": null,
-            "progress": 0,
+            "progress": 0.0,
             "answers": [
                 null,
                 null,
@@ -24,7 +24,7 @@
         {
             "number": 2,
             "score": null,
-            "progress": 0,
+            "progress": 0.0,
             "answers": [
                 null,
                 null,
@@ -41,7 +41,7 @@
         {
             "number": 3,
             "score": null,
-            "progress": 0,
+            "progress": 0.0,
             "answers": [
                 null,
                 null,
@@ -58,7 +58,7 @@
         {
             "number": 4,
             "score": null,
-            "progress": 0,
+            "progress": 0.0,
             "answers": [
                 null,
                 null,
@@ -75,7 +75,7 @@
         {
             "number": 5,
             "score": null,
-            "progress": 0,
+            "progress": 0.0,
             "answers": [
                 null,
                 null,
@@ -92,7 +92,7 @@
         {
             "number": 6,
             "score": null,
-            "progress": 0,
+            "progress": 0.0,
             "answers": [
                 null,
                 null,

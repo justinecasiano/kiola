@@ -2,7 +2,7 @@ class LessonStanding {
   int number;
   List<int?> answers;
   int? score;
-  int progress;
+  double progress;
 
   LessonStanding(
       {required this.number,

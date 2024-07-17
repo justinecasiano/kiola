@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import '../extras/utils.dart';
+import '../models/cubits/lesson_cubit.dart';
 import '../models/cubits/navigation_cubit.dart';
+import '../models/lesson.dart';
 import 'dashboard_screen.dart';
 import 'lesson_screen.dart';
 import 'settings_screen.dart';
@@ -31,10 +33,14 @@ class _HomeScreenState extends State<HomeScreen> {
         builder: (BuildContext context, int state) {
       return Scaffold(
         backgroundColor: colors.primaryShade,
-        body: IndexedStack(index: state, children: const [
-          DashboardScreen(),
-          LessonScreen(),
-          SettingsScreen()
+        body: IndexedStack(index: state, children: [
+          const DashboardScreen(),
+          BlocBuilder<LessonCubit, Lesson>(
+            builder: (BuildContext context, Lesson state) {
+              return const LessonScreen();
+            },
+          ),
+          const SettingsScreen()
         ]),
         extendBody: true,
         bottomNavigationBar: Container(
