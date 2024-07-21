@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:learning_management_system/src/widgets/rounded_container.dart';
@@ -7,10 +9,12 @@ import '../extras/utils.dart';
 import '../models/cubits/lesson_cubit.dart';
 import '../models/cubits/student_cubit.dart';
 import '../models/lesson.dart';
+import '../models/quiz.dart';
 import '../models/student.dart';
 import '../widgets/custom_background.dart';
 import '../constants/values.dart' as values;
 import '../constants/colors.dart' as colors;
+import '../widgets/quiz_content.dart';
 
 class LessonScreen extends StatelessWidget {
   const LessonScreen({super.key});
@@ -149,7 +153,7 @@ class Contents extends StatelessWidget {
         title: lesson!.title.toUpperCase(),
       ),
       'video': VideoContent(),
-      'quiz': QuizContent()
+      'quiz': QuizContent(quiz: lesson!.quiz)
     }[content];
   }
 
@@ -291,20 +295,6 @@ class VideoContent extends StatelessWidget {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [BackIcon()],
-    );
-  }
-}
-
-class QuizContent extends StatelessWidget {
-  const QuizContent({super.key});
-
-  @override
-  Widget build(BuildContext context) {
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: [
-        BackIcon(),
-      ],
     );
   }
 }
