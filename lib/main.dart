@@ -59,7 +59,9 @@ class _AppState extends State<App> {
               return MultiBlocProvider(
                   providers: [
                     BlocProvider(create: (_) => NavigationCubit()),
-                    BlocProvider(create: (_) => LessonCubit(lessons: lessons)),
+                    BlocProvider(
+                        create: (_) => LessonCubit(lessons: lessons)
+                          ..setCurrentQuestion(0)),
                     BlocProvider(create: (_) => StudentCubit(student!)),
                   ],
                   child: BlocBuilder<StudentCubit, Student>(

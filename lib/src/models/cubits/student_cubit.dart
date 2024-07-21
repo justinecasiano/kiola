@@ -28,4 +28,10 @@ class StudentCubit extends Cubit<Student> {
     student.overallProgress /= student.lessonStanding.length;
     emit(student);
   }
+
+  void setQuestionAnswer(int lessonNumber, int questionNumber, int answer) {
+    Student student = state.copyWith();
+    student.lessonStanding[lessonNumber].answers[questionNumber] = answer;
+    emit(student);
+  }
 }
