@@ -47,9 +47,9 @@ class _AppState extends State<App> {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       title: 'Kiola',
-      routes: {
-        '/splash': (context) => const SplashScreen(),
-      },
+      theme: ThemeData(
+        fontFamily: GoogleFonts.poppins().fontFamily,
+      ),
       home: FutureBuilder(
           future: initialize(context),
           builder: (context, snapshot) {
@@ -59,9 +59,7 @@ class _AppState extends State<App> {
               return MultiBlocProvider(
                   providers: [
                     BlocProvider(create: (_) => NavigationCubit()),
-                    BlocProvider(
-                        create: (_) => LessonCubit(lessons: lessons)
-                          ..setCurrentQuestion(0)),
+                    BlocProvider(create: (_) => LessonCubit(lessons: lessons)),
                     BlocProvider(create: (_) => StudentCubit(student!)),
                   ],
                   child: BlocBuilder<StudentCubit, Student>(
@@ -69,12 +67,6 @@ class _AppState extends State<App> {
                       return const HomeScreen();
                     },
                   ));
-            } else if (snapshot.hasError) {
-              return Center(
-                  child: Text(
-                snapshot.error.toString(),
-                style: const TextStyle(fontSize: 12),
-              ));
             } else {
               return const Scaffold(
                 body: Center(
@@ -83,9 +75,6 @@ class _AppState extends State<App> {
               );
             }
           }),
-      theme: ThemeData(
-        fontFamily: GoogleFonts.poppins().fontFamily,
-      ),
     );
   }
 }

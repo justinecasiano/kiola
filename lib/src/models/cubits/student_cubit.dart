@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
+import '../lesson.dart';
 import '../student.dart';
 import 'lesson_cubit.dart';
 
@@ -13,20 +14,22 @@ class StudentCubit extends Cubit<Student> {
     emit(student);
   }
 
-  void setLessonProgress(BuildContext context, int number) {
-    double percent = context.read<LessonCubit>().getContentPercentage();
+  void setLessonProgress(BuildContext context, String content) {
+    context.read<LessonCubit>().setContentClicked(content);
+    Lesson lesson = context.read<LessonCubit>().state;
+
     Student student = state.copyWith();
-    student.lessonStanding[number].progress += percent;
-    emit(student);
+    student.lessonStanding[lesson.number - 1].progress =
+        lesson.getTotalContentClicked();
+    emit(setOverallProgress(student));
   }
 
-  void setOverallProgress() {
-    Student student = state.copyWith();
+  Student setOverallProgress(Student student) {
     for (var standing in student.lessonStanding) {
       student.overallProgress += standing.progress;
     }
     student.overallProgress /= student.lessonStanding.length;
-    emit(student);
+    return student;
   }
 
   void setQuestionAnswer(int lessonNumber, int questionNumber, int answer) {
