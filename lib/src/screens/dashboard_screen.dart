@@ -341,7 +341,7 @@ class LessonCard extends StatelessWidget {
                             height: values.small,
                           ),
                           Text(
-                            'Module, Powerpoint, ${lesson!.hasVideo ? 'Video, ' : ''}Quiz',
+                            'Module, Powerpoint, ${lesson.hasVideo() ? 'Video, ' : ''}Quiz',
                             style: values.getTextStyle(context, 'bodySmall',
                                 color: colors.accentLighter,
                                 weight: FontWeight.normal),

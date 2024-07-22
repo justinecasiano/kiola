@@ -3,7 +3,11 @@
         "number": 1,
         "title": "Introduction to Dance",
         "selectedContent": "default",
-        "hasVideo": false,
+        "hasClicked": {
+            "pdf": false,
+            "ppt": false,
+            "quiz": false
+        },
         "quiz": {
             "status": "inactive",
             "currentQuestion": null,
@@ -125,7 +129,11 @@
         "number": 2,
         "title": "Dance Related Injuries",
         "selectedContent": "default",
-        "hasVideo": false,
+        "hasClicked": {
+            "pdf": false,
+            "ppt": false,
+            "quiz": false
+        },
         "quiz": {
             "status": "inactive",
             "currentQuestion": null,
@@ -247,7 +255,12 @@
         "number": 3,
         "title": "Folk Dance in the Philippines",
         "selectedContent": "default",
-        "hasVideo": true,
+        "hasClicked": {
+            "pdf": false,
+            "ppt": false,
+            "video": false,
+            "quiz": false
+        },
         "quiz": {
             "status": "inactive",
             "currentQuestion": null,
@@ -369,7 +382,11 @@
         "number": 4,
         "title": "Dancesport",
         "selectedContent": "default",
-        "hasVideo": false,
+        "hasClicked": {
+            "pdf": false,
+            "ppt": false,
+            "quiz": false
+        },
         "quiz": {
             "status": "inactive",
             "currentQuestion": null,
@@ -491,7 +508,11 @@
         "number": 5,
         "title": "Cheerdance",
         "selectedContent": "default",
-        "hasVideo": false,
+        "hasClicked": {
+            "pdf": false,
+            "ppt": false,
+            "quiz": false
+        },
         "quiz": {
             "status": "inactive",
             "currentQuestion": null,
@@ -613,7 +634,11 @@
         "number": 6,
         "title": "Hip-Hop and Street Dance",
         "selectedContent": "default",
-        "hasVideo": false,
+        "hasClicked": {
+            "pdf": false,
+            "ppt": false,
+            "quiz": false
+        },
         "quiz": {
             "status": "inactive",
             "currentQuestion": null,

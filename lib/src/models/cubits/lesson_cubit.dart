@@ -1,5 +1,3 @@
-import 'dart:math';
-
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../lesson.dart';
@@ -10,17 +8,18 @@ class LessonCubit extends Cubit<Lesson> {
 
   LessonCubit({required this.lessons}) : super(lessons.first);
 
-  double getContentPercentage() {
-    return 100 / (state.hasVideo ? 4 : 3);
-  }
-
   void setLesson(int number) {
     emit(lessons.firstWhere((lesson) => lesson.number == number));
-    if (state.quiz.currentQuestion == null) setCurrentQuestion(0);
   }
 
   void setContent(String content) {
     emit(state.copyWith(selectedContent: content));
+  }
+
+  void setContentClicked(String content) {
+    Map<String, dynamic> hasClicked = state.copyWith().hasClicked;
+    hasClicked[content] = true;
+    emit(state.copyWith(hasClicked: hasClicked));
   }
 
   void setQuizStatus(String status) {

@@ -1,5 +1,3 @@
-import 'dart:async';
-
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:learning_management_system/src/widgets/rounded_container.dart';
@@ -9,7 +7,6 @@ import '../extras/utils.dart';
 import '../models/cubits/lesson_cubit.dart';
 import '../models/cubits/student_cubit.dart';
 import '../models/lesson.dart';
-import '../models/quiz.dart';
 import '../models/student.dart';
 import '../widgets/custom_background.dart';
 import '../constants/values.dart' as values;
@@ -137,23 +134,20 @@ class Header extends StatelessWidget {
 }
 
 class Contents extends StatelessWidget {
-  final Lesson? lesson;
+  final Lesson lesson;
   const Contents({super.key, required this.lesson});
 
   dynamic getContent(String content) {
     return {
-      'default': DefaultContent(
-          title: lesson!.title,
-          number: lesson!.number,
-          hasVideo: lesson!.hasVideo),
+      'default': DefaultContent(lesson: lesson),
       'pdf': PDFContent(
-        title: lesson!.title.toUpperCase(),
+        title: lesson.title.toUpperCase(),
       ),
       'ppt': PPTContent(
-        title: lesson!.title.toUpperCase(),
+        title: lesson.title.toUpperCase(),
       ),
       'video': VideoContent(),
-      'quiz': QuizContent(quiz: lesson!.quiz)
+      'quiz': QuizContent(quiz: lesson.quiz)
     }[content];
   }
 
@@ -173,24 +167,19 @@ class Contents extends StatelessWidget {
 }
 
 class DefaultContent extends StatelessWidget {
-  final String title;
-  final int number;
-  final bool hasVideo;
+  final Lesson lesson;
 
-  const DefaultContent(
-      {super.key,
-      required this.title,
-      required this.hasVideo,
-      required this.number});
+  const DefaultContent({super.key, required this.lesson});
 
   List<Widget> hasVideoContent(BuildContext context) {
-    return (hasVideo)
+    return (lesson.hasVideo())
         ? [
             const SizedBox(height: values.medium),
             ContentCard(
-                title: 'Video for $title',
+                title: 'Video for ${lesson.title}',
+                status: lesson.getContentStatus('video'),
                 thumbnail: 'content/content-3.png',
-                number: number,
+                number: lesson.number,
                 onTap: onTap(context, 'video'))
           ]
         : [];
@@ -207,24 +196,27 @@ class DefaultContent extends StatelessWidget {
     return Column(
       children: [
         ContentCard(
-          title: '$title - PDF',
+          title: '${lesson.title} - PDF',
+          status: lesson.getContentStatus('pdf'),
           thumbnail: 'content/content-1.png',
-          number: number,
+          number: lesson.number,
           onTap: onTap(context, 'pdf'),
         ),
         const SizedBox(height: values.medium),
         ContentCard(
-          title: '$title - PPT',
+          title: '${lesson.title} - PPT',
+          status: lesson.getContentStatus('ppt'),
           thumbnail: 'content/content-2.png',
-          number: number,
+          number: lesson.number,
           onTap: onTap(context, 'ppt'),
         ),
         ...hasVideoContent(context),
         const SizedBox(height: values.medium),
         ContentCard(
-          title: 'Quiz for $title',
+          title: 'Quiz for ${lesson.title}',
+          status: lesson.getContentStatus('quiz'),
           thumbnail: 'content/content-3.png',
-          number: number,
+          number: lesson.number,
           onTap: onTap(context, 'quiz'),
         )
       ],
@@ -250,7 +242,7 @@ class PDFContent extends StatelessWidget {
             canShowPaginationDialog: false,
             onPageChanged: (page) {
               if (page.isLastPage) {
-                print('you have reached the last page');
+                context.read<StudentCubit>().setLessonProgress(context, 'pdf');
               }
             },
           ),
@@ -277,7 +269,7 @@ class PPTContent extends StatelessWidget {
             canShowPaginationDialog: false,
             onPageChanged: (page) {
               if (page.isLastPage) {
-                print('you have reached the last page');
+                context.read<StudentCubit>().setLessonProgress(context, 'ppt');
               }
             },
           ),
@@ -303,12 +295,14 @@ class ContentCard extends StatelessWidget {
   final Function() onTap;
   final String title;
   final String thumbnail;
+  final String status;
   final int number;
 
   const ContentCard(
       {super.key,
       required this.onTap,
       required this.title,
+      required this.status,
       required this.thumbnail,
       required this.number});
 
@@ -336,7 +330,7 @@ class ContentCard extends StatelessWidget {
                   const SizedBox(height: 95),
                   RoundedContainer(children: [
                     Text(
-                      'Lesson $number',
+                      status,
                       textAlign: TextAlign.center,
                       style: values.getTextStyle(context, 'titleSmall',
                           color: colors.accentDark, weight: FontWeight.w600),

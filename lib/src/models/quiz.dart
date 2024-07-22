@@ -8,7 +8,9 @@ class Quiz {
   Quiz(
       {required this.currentQuestion,
       required this.questions,
-      required this.status});
+      required this.status}) {
+    currentQuestion = currentQuestion ?? questions.first;
+  }
 
   factory Quiz.fromJson(Map<String, dynamic> json) {
     return Quiz(
