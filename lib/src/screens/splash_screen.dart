@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:learning_management_system/src/screens/register_screen.dart';
+
+import 'home_screen.dart';
 
 class SplashScreen extends StatefulWidget {
   const SplashScreen({super.key});
@@ -15,7 +16,7 @@ class _SplashScreenState extends State<SplashScreen> {
       body: ElevatedButton(
           onPressed: () => showModalBottomSheet(
                 context: (context),
-                builder: (context) => const RegisterScreen(),
+                builder: (context) => const HomeScreen(),
               ),
           child: const Text('Register')),
     );
