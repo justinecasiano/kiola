@@ -1,10 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:learning_management_system/src/widgets/rounded_container.dart';
+import 'package:media_kit/media_kit.dart';
+import 'package:media_kit_video/media_kit_video.dart';
 import 'package:syncfusion_flutter_pdfviewer/pdfviewer.dart';
 
 import '../extras/utils.dart';
 import '../models/cubits/lesson_cubit.dart';
+import '../models/cubits/navigation_cubit.dart';
 import '../models/cubits/student_cubit.dart';
 import '../models/lesson.dart';
 import '../models/student.dart';
@@ -146,7 +149,9 @@ class Contents extends StatelessWidget {
       'ppt': PPTContent(
         title: lesson.title.toUpperCase(),
       ),
-      'video': VideoContent(),
+      'video': VideoContent(
+        title: lesson.title.toUpperCase(),
+      ),
       'quiz': QuizContent(quiz: lesson.quiz)
     }[content];
   }
@@ -279,14 +284,52 @@ class PPTContent extends StatelessWidget {
   }
 }
 
-class VideoContent extends StatelessWidget {
-  const VideoContent({super.key});
+class VideoContent extends StatefulWidget {
+  final String title;
+
+  const VideoContent({super.key, required this.title});
+
+  @override
+  State<VideoContent> createState() => _VideoContentState();
+}
+
+class _VideoContentState extends State<VideoContent> {
+  late final player = Player();
+  late final controller = VideoController(player);
+
+  @override
+  void initState() {
+    super.initState();
+    player.open(Media('asset:///assets/videos/${widget.title}.mp4'));
+    player.stream.completed.listen((isCompleted) {
+      isCompleted
+          ? context.read<StudentCubit>().setLessonProgress(context, 'video')
+          : null;
+    });
+  }
+
+  @override
+  void dispose() {
+    player.dispose();
+    super.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
-      children: [BackIcon()],
+      children: [
+        BackIcon(),
+        const SizedBox(height: values.small),
+        Expanded(
+          child: BlocBuilder<NavigationCubit, int>(
+            builder: (BuildContext context, int state) {
+              (state == 0) ? player.pause() : player.play();
+              return Video(controller: controller);
+            },
+          ),
+        )
+      ],
     );
   }
 }

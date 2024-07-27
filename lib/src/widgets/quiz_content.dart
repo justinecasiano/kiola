@@ -6,8 +6,8 @@ import '../models/quiz.dart';
 class QuizContent extends StatelessWidget {
   final Quiz quiz;
   final dynamic contents = const {
-    'active': QuizIntro(),
-    'inactive': QuizBody(),
+    'inactive': QuizIntro(),
+    'active': QuizBody(),
     'completed': QuizOutro()
   };
 

@@ -2,15 +2,17 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:learning_management_system/src/models/cubits/navigation_cubit.dart';
+import 'package:media_kit/media_kit.dart';
 import 'src/extras/utils.dart';
 import 'src/models/cubits/lesson_cubit.dart';
 import 'src/models/cubits/student_cubit.dart';
 import 'src/models/lesson.dart';
 import 'src/models/student.dart';
 import 'src/screens/home_screen.dart';
-import 'src/screens/splash_screen.dart';
 
 void main() {
+  WidgetsFlutterBinding.ensureInitialized();
+  MediaKit.ensureInitialized();
   runApp(const App());
 }
 
