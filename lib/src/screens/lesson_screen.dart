@@ -1,10 +1,14 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_animate/flutter_animate.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:learning_management_system/src/widgets/rounded_container.dart';
+import 'package:websafe_svg/websafe_svg.dart';
+import '../widgets/quiz_content.dart';
 import 'package:media_kit/media_kit.dart';
 import 'package:media_kit_video/media_kit_video.dart';
 import 'package:syncfusion_flutter_pdfviewer/pdfviewer.dart';
 
+import '../widgets/back_icon.dart';
+import '../widgets/rounded_container.dart';
 import '../extras/utils.dart';
 import '../models/cubits/lesson_cubit.dart';
 import '../models/cubits/navigation_cubit.dart';
@@ -14,35 +18,51 @@ import '../models/student.dart';
 import '../widgets/custom_background.dart';
 import '../constants/values.dart' as values;
 import '../constants/colors.dart' as colors;
-import '../widgets/quiz_content.dart';
 
 class LessonScreen extends StatelessWidget {
   const LessonScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
-    return BlocBuilder<LessonCubit, Lesson>(
-      builder: (BuildContext context, Lesson lesson) {
-        return CustomBackground(
-          isScrollable: lesson.selectedContent == 'default',
-          child: Padding(
-            padding: const EdgeInsets.symmetric(horizontal: values.medium),
-            child: BlocBuilder<StudentCubit, Student>(
-                builder: (BuildContext context, Student student) {
-              return lesson.selectedContent == 'default'
-                  ? Column(children: [
-                      Header(lesson: lesson, student: student),
-                      Contents(lesson: lesson)
-                    ])
-                  : SizedBox(
-                      height: Utils.appGetHeight(context, 85),
-                      child: Column(children: [
-                        Header(lesson: lesson, student: student),
-                        Expanded(child: Contents(lesson: lesson))
-                      ]),
-                    );
-            }),
-          ),
+    return BlocSelector<StudentCubit, Student, String>(
+      selector: (state) => state.getCurrentLessonSummary().selectedContent,
+      builder: (BuildContext context, String selectedContent) {
+        return ListView(
+          key: selectedContent == 'default' ? UniqueKey() : null,
+          physics: selectedContent == 'default'
+              ? null
+              : const NeverScrollableScrollPhysics(),
+          children: [
+            Stack(
+              children: [
+                const CustomBackground(),
+                Padding(
+                  padding: EdgeInsets.symmetric(horizontal: values.medium),
+                  child: Builder(
+                    builder: (context) {
+                      final contents = Column(
+                        children: [
+                          Header()
+                              .animate(delay: 200.ms)
+                              .fade(duration: 300.ms),
+                          selectedContent == 'default'
+                              ? Contents()
+                              : Expanded(child: Contents())
+                        ],
+                      );
+
+                      return selectedContent == 'default'
+                          ? contents
+                          : SizedBox(
+                              height: Utils.appGetHeight(context, 85),
+                              child: contents,
+                            );
+                    },
+                  ),
+                ),
+              ],
+            ),
+          ],
         );
       },
     );
@@ -50,16 +70,9 @@ class LessonScreen extends StatelessWidget {
 }
 
 class Header extends StatelessWidget {
-  final Lesson? lesson;
-  final Student? student;
+  const Header({super.key});
 
-  const Header({super.key, required this.lesson, required this.student});
-
-  dynamic getContentTitle(BuildContext context) {
-    String content = lesson!.selectedContent;
-    int number = lesson!.number;
-    String title = lesson!.title.toUpperCase();
-
+  dynamic getContentTitle(String title, String content, int number) {
     return {
       'default': title,
       'pdf': '$title - PDF',
@@ -71,8 +84,41 @@ class Header extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    int number = lesson!.number;
-    int progress = student!.lessonStanding[number - 1].progress.round();
+    final lessonNumber = BlocSelector<LessonCubit, Lesson, int>(
+      selector: (state) => state.number,
+      builder: (BuildContext context, int number) {
+        return Text(
+          'Lesson $number',
+          style: values.getTextStyle(context, 'titleLarge',
+              color: colors.primary, weight: FontWeight.w700),
+        );
+      },
+    );
+
+    final progressIndicator = BlocSelector<StudentCubit, Student, int>(
+      selector: (state) => state.getCurrentLessonSummary().progress.round(),
+      builder: (BuildContext context, int progress) {
+        return Text(
+          '$progress%',
+          textAlign: TextAlign.center,
+          style: values.getTextStyle(context, 'titleLarge',
+              color: colors.accentLight, weight: FontWeight.bold),
+        );
+      },
+    );
+
+    final contentTitle = BlocSelector<StudentCubit, Student, String>(
+      selector: (state) => state.getCurrentLessonSummary().selectedContent,
+      builder: (BuildContext context, String content) {
+        Lesson lesson = context.watch<LessonCubit>().state;
+
+        return Text(
+          getContentTitle(lesson.title, content, lesson.number),
+          style: values.getTextStyle(context, 'titleLarge',
+              color: colors.primary, weight: FontWeight.w600),
+        ).animate(delay: 500.ms).fade(duration: 500.ms);
+      },
+    );
 
     return Padding(
       padding: const EdgeInsets.only(
@@ -81,53 +127,49 @@ class Header extends StatelessWidget {
           left: values.small - 3,
           right: values.small - 3),
       child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
-        Row(children: [
-          Expanded(
-            child: SizedBox(
-              width: Utils.appGetWidth(context, 65),
-              child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Text(
-                      'Lesson $number',
-                      style: values.getTextStyle(context, 'titleLarge',
-                          color: colors.primary, weight: FontWeight.w700),
-                    ),
-                    const SizedBox(height: values.small),
-                    Text(
-                      Utils.getDateTime('EEEE, MMMM d y'),
-                      style: values.getTextStyle(context, 'bodyMedium',
-                          color: colors.primary, weight: FontWeight.w400),
-                    ),
-                  ]),
+        Row(
+          children: [
+            Expanded(
+              child: SizedBox(
+                width: Utils.appGetWidth(context, 65),
+                child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      lessonNumber,
+                      const SizedBox(height: values.small),
+                      Text(
+                        Utils.getDateTime('EEEE, MMMM d y'),
+                        style: values.getTextStyle(context, 'bodyMedium',
+                            color: colors.primary, weight: FontWeight.w400),
+                      ),
+                    ]),
+              ),
             ),
-          ),
-          RoundedContainer(children: [
-            Text(
-              '$progress%',
-              textAlign: TextAlign.center,
-              style: values.getTextStyle(context, 'titleLarge',
-                  color: colors.accentLight, weight: FontWeight.bold),
-            ),
-            const SizedBox(height: values.small - 6),
-            Text(
-              'Progress',
-              textAlign: TextAlign.center,
-              style: values.getTextStyle(context, 'bodySmall',
-                  color: colors.accentDark, weight: FontWeight.w600),
-            ),
-          ])
-        ]),
+            RoundedContainer(
+              borderRadius: values.medium - 5,
+              child: Column(children: [
+                progressIndicator,
+                const SizedBox(height: values.small - 6),
+                Text(
+                  'Progress',
+                  textAlign: TextAlign.center,
+                  style: values.getTextStyle(context, 'bodySmall',
+                      color: colors.accentDark, weight: FontWeight.w600),
+                ),
+              ]),
+            )
+                .animate(onPlay: ((controller) => controller.repeat()))
+                .scaleXY(delay: 4000.ms, end: 1.1, duration: 500.ms)
+                .shake(duration: 750.ms)
+                .scaleXY(delay: 4500.ms, end: 0.9, duration: 500.ms)
+          ],
+        ),
         const SizedBox(height: values.large),
         Padding(
           padding: const EdgeInsets.symmetric(horizontal: values.medium),
           child: FittedBox(
             fit: BoxFit.scaleDown,
-            child: Text(
-              getContentTitle(context),
-              style: values.getTextStyle(context, 'titleLarge',
-                  color: colors.primary, weight: FontWeight.w600),
-            ),
+            child: contentTitle,
           ),
         ),
         const SizedBox(height: values.small + 5),
@@ -137,10 +179,9 @@ class Header extends StatelessWidget {
 }
 
 class Contents extends StatelessWidget {
-  final Lesson lesson;
-  const Contents({super.key, required this.lesson});
+  const Contents({super.key});
 
-  dynamic getContent(String content) {
+  Widget getContent(String content, Lesson lesson) {
     return {
       'default': DefaultContent(lesson: lesson),
       'pdf': PDFContent(
@@ -152,20 +193,42 @@ class Contents extends StatelessWidget {
       'video': VideoContent(
         title: lesson.title.toUpperCase(),
       ),
-      'quiz': QuizContent(quiz: lesson.quiz)
-    }[content];
+      'quiz': QuizContent(
+        lessonNumber: lesson.number,
+        questions: lesson.questions,
+      )
+    }[content]!;
   }
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      decoration: BoxDecoration(
-        color: colors.primary,
-        borderRadius: BorderRadius.circular(values.medium),
-      ),
-      child: Padding(
-        padding: const EdgeInsets.all(values.medium),
-        child: getContent(lesson!.selectedContent),
+    final content = BlocSelector<StudentCubit, Student, String>(
+      selector: (state) => state.getCurrentLessonSummary().selectedContent,
+      builder: (BuildContext context, String content) {
+        final widget = getContent(content, context.read<LessonCubit>().state);
+        return (content == 'quiz')
+            ? widget
+            : widget.animate(delay: 1000.ms).fade(duration: 500.ms);
+      },
+    );
+    return RoundedContainer(
+      padding: EdgeInsets.zero,
+      borderRadius: values.medium,
+      child: Stack(
+        children: [
+          Positioned(
+              left: -values.medium,
+              child: Padding(
+                padding: const EdgeInsets.only(
+                    top: values.large + values.large + values.large),
+                child: WebsafeSvg.asset('assets/images/heron.svg',
+                    fit: BoxFit.contain),
+              )),
+          Padding(
+            padding: const EdgeInsets.all(values.medium),
+            child: content,
+          ),
+        ],
       ),
     );
   }
@@ -177,13 +240,13 @@ class DefaultContent extends StatelessWidget {
   const DefaultContent({super.key, required this.lesson});
 
   List<Widget> hasVideoContent(BuildContext context) {
-    return (lesson.hasVideo())
+    return (lesson.hasVideo)
         ? [
             const SizedBox(height: values.medium),
             ContentCard(
+                type: 'video',
                 title: 'Video for ${lesson.title}',
-                status: lesson.getContentStatus('video'),
-                thumbnail: 'content/content-3.png',
+                thumbnail: 'content/video.png',
                 number: lesson.number,
                 onTap: onTap(context, 'video'))
           ]
@@ -192,7 +255,7 @@ class DefaultContent extends StatelessWidget {
 
   Function() onTap(BuildContext context, String content) {
     return () {
-      context.read<LessonCubit>().setContent(content);
+      context.read<StudentCubit>().setContent(content);
     };
   }
 
@@ -201,30 +264,33 @@ class DefaultContent extends StatelessWidget {
     return Column(
       children: [
         ContentCard(
+          type: 'pdf',
           title: '${lesson.title} - PDF',
-          status: lesson.getContentStatus('pdf'),
-          thumbnail: 'content/content-1.png',
+          thumbnail: 'content/pdf/lesson-${lesson.number}.png',
           number: lesson.number,
           onTap: onTap(context, 'pdf'),
         ),
         const SizedBox(height: values.medium),
         ContentCard(
+          type: 'ppt',
           title: '${lesson.title} - PPT',
-          status: lesson.getContentStatus('ppt'),
-          thumbnail: 'content/content-2.png',
+          thumbnail: 'content/ppt/lesson-${lesson.number}.png',
           number: lesson.number,
           onTap: onTap(context, 'ppt'),
         ),
         ...hasVideoContent(context),
         const SizedBox(height: values.medium),
         ContentCard(
+          type: 'quiz',
           title: 'Quiz for ${lesson.title}',
-          status: lesson.getContentStatus('quiz'),
-          thumbnail: 'content/content-3.png',
+          thumbnail: 'content/quiz.png',
           number: lesson.number,
           onTap: onTap(context, 'quiz'),
         )
-      ],
+      ]
+          .animate(delay: 1000.ms, interval: 100.ms)
+          .scale(duration: 200.ms)
+          .slideX(duration: 200.ms),
     );
   }
 }
@@ -247,7 +313,7 @@ class PDFContent extends StatelessWidget {
             canShowPaginationDialog: false,
             onPageChanged: (page) {
               if (page.isLastPage) {
-                context.read<StudentCubit>().setLessonProgress(context, 'pdf');
+                context.read<StudentCubit>().setContentClicked('pdf');
               }
             },
           ),
@@ -274,7 +340,7 @@ class PPTContent extends StatelessWidget {
             canShowPaginationDialog: false,
             onPageChanged: (page) {
               if (page.isLastPage) {
-                context.read<StudentCubit>().setLessonProgress(context, 'ppt');
+                context.read<StudentCubit>().setContentClicked('ppt');
               }
             },
           ),
@@ -303,7 +369,7 @@ class _VideoContentState extends State<VideoContent> {
     player.open(Media('asset:///assets/videos/${widget.title}.mp4'));
     player.stream.completed.listen((isCompleted) {
       isCompleted
-          ? context.read<StudentCubit>().setLessonProgress(context, 'video')
+          ? context.read<StudentCubit>().setContentClicked('video')
           : null;
     });
   }
@@ -322,11 +388,11 @@ class _VideoContentState extends State<VideoContent> {
         BackIcon(),
         const SizedBox(height: values.small),
         Expanded(
-          child: BlocBuilder<NavigationCubit, int>(
-            builder: (BuildContext context, int state) {
-              (state == 0) ? player.pause() : player.play();
-              return Video(controller: controller);
+          child: BlocListener<NavigationCubit, int>(
+            listener: (BuildContext context, int state) {
+              (state == 1) ? player.play() : player.pause();
             },
+            child: Video(controller: controller),
           ),
         )
       ],
@@ -335,19 +401,20 @@ class _VideoContentState extends State<VideoContent> {
 }
 
 class ContentCard extends StatelessWidget {
-  final Function() onTap;
+  final String type;
   final String title;
   final String thumbnail;
-  final String status;
   final int number;
+  final Function() onTap;
 
-  const ContentCard(
-      {super.key,
-      required this.onTap,
-      required this.title,
-      required this.status,
-      required this.thumbnail,
-      required this.number});
+  const ContentCard({
+    super.key,
+    required this.type,
+    required this.title,
+    required this.thumbnail,
+    required this.number,
+    required this.onTap,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -356,59 +423,56 @@ class ContentCard extends StatelessWidget {
       child: RoundedContainer(
         padding: EdgeInsets.zero,
         borderRadius: values.medium,
-        children: [
-          Stack(children: [
-            SizedBox(
-                height: 115,
-                child: Image.asset('assets/images/thumbnails/$thumbnail',
-                    fit: BoxFit.cover)),
-            Padding(
-              padding: const EdgeInsets.only(
-                  left: values.small + 5,
-                  right: values.small + 5,
-                  bottom: values.small),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  const SizedBox(height: 95),
-                  RoundedContainer(children: [
-                    Text(
-                      status,
-                      textAlign: TextAlign.center,
-                      style: values.getTextStyle(context, 'titleSmall',
-                          color: colors.accentDark, weight: FontWeight.w600),
-                    ),
-                  ]),
-                  const SizedBox(height: values.small - 5),
-                  Text(
-                    title,
-                    textAlign: TextAlign.center,
-                    style: values.getTextStyle(context, 'titleMedium',
-                        color: colors.secondary, weight: FontWeight.w500),
-                  ),
-                ],
-              ),
-            )
-          ])
-        ],
-      ),
-    );
-  }
-}
-
-class BackIcon extends StatelessWidget {
-  const BackIcon({super.key});
-
-  @override
-  Widget build(BuildContext context) {
-    return GestureDetector(
-      onTap: () {
-        context.read<LessonCubit>().setContent('default');
-      },
-      child: const Icon(
-        Icons.arrow_back_rounded,
-        color: colors.accentDark,
-        size: values.large + values.small,
+        child: Stack(children: [
+          SizedBox(
+              width: double.infinity,
+              height: 115,
+              child: Image.asset('assets/images/thumbnails/$thumbnail',
+                  fit: BoxFit.fitWidth)),
+          Padding(
+            padding: const EdgeInsets.only(
+                left: values.small + 5,
+                right: values.small + 5,
+                bottom: values.small),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                const SizedBox(height: 95),
+                BlocSelector<StudentCubit, Student, String>(
+                  selector: (state) =>
+                      state.getCurrentLessonSummary().getContentStatus(type),
+                  builder: (context, status) {
+                    return RoundedContainer(
+                      color: status == 'Pending'
+                          ? colors.primary
+                          : colors.accentDark,
+                      child: Text(
+                        status,
+                        textAlign: TextAlign.center,
+                        style: values.getTextStyle(context, 'titleSmall',
+                            color: status == 'Pending'
+                                ? colors.accentDark
+                                : colors.primary,
+                            weight: FontWeight.bold),
+                      )
+                          .animate(delay: 2200.ms)
+                          .scaleXY(end: 1.1, duration: 500.ms)
+                          .shake(duration: 750.ms)
+                          .scaleXY(delay: 500.ms, end: 0.9, duration: 500.ms),
+                    );
+                  },
+                ),
+                const SizedBox(height: values.small - 5),
+                Text(
+                  title,
+                  textAlign: TextAlign.center,
+                  style: values.getTextStyle(context, 'titleMedium',
+                      color: colors.secondary, weight: FontWeight.w500),
+                ),
+              ],
+            ),
+          )
+        ]),
       ),
     );
   }
