@@ -1,10 +1,9 @@
 {
-    "uuid": null,
-    "username": null,
-    "email": null,
-    "lastSaved": null,
-    "shouldUpdate": false,
-    "overallProgress": 0.0,
+    "uuid": 98521,
+    "username": "Justine",
+    "email": "justine@gmail.com",
+    "lastSaved": 1234570,
+    "overallProgress": 20.42,
     "currentLesson": 0,
     "lessonSummary": [
         {
@@ -18,8 +17,8 @@
             },
             "quizSummary": {
                 "status": "inactive",
-                "currentNumber": 0,
-                "score": null,
+                "currentNumber": 1,
+                "score": 0,
                 "answers": [
                     null,
                     null,
@@ -57,8 +56,8 @@
             },
             "quizSummary": {
                 "status": "inactive",
-                "currentNumber": 0,
-                "score": null,
+                "currentNumber": 1,
+                "score": 10,
                 "answers": [
                     null,
                     null,
@@ -97,8 +96,8 @@
             },
             "quizSummary": {
                 "status": "inactive",
-                "currentNumber": 0,
-                "score": null,
+                "currentNumber": 1,
+                "score": 0,
                 "answers": [
                     null,
                     null,
@@ -136,8 +135,8 @@
             },
             "quizSummary": {
                 "status": "inactive",
-                "currentNumber": 0,
-                "score": null,
+                "currentNumber": 1,
+                "score": 8,
                 "answers": [
                     null,
                     null,
@@ -175,8 +174,8 @@
             },
             "quizSummary": {
                 "status": "inactive",
-                "currentNumber": 0,
-                "score": null,
+                "currentNumber": 1,
+                "score": 0,
                 "answers": [
                     null,
                     null,
@@ -214,8 +213,8 @@
             },
             "quizSummary": {
                 "status": "inactive",
-                "currentNumber": 0,
-                "score": null,
+                "currentNumber": 1,
+                "score": 9,
                 "answers": [
                     null,
                     null,

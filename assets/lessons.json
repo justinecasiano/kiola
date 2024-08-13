@@ -2,758 +2,643 @@
     {
         "number": 1,
         "title": "Introduction to Dance",
-        "selectedContent": "default",
-        "hasClicked": {
-            "pdf": false,
-            "ppt": false,
-            "quiz": false
-        },
-        "quiz": {
-            "status": "inactive",
-            "currentQuestion": null,
-            "questions": [
-                {
-                    "question": "Space is very important when it comes to dance. What movements may be executed in high, medium, low?",
-                    "options": [
-                        "Focus",
-                        "Level",
-                        "Space",
-                        "Timing"
-                    ],
-                    "correctAnswer": 1,
-                    "remainingTime": 10
-                },
-                {
-                    "question": "Dancers require creativity, which helps them to express the music and story lines they dance to using unique body movements. Which Element of dance movements may be executed in different directions, levels and sizes?",
-                    "options": [
-                        "Focus",
-                        "Level",
-                        "Space",
-                        "Timing"
-                    ],
-                    "correctAnswer": 2,
-                    "remainingTime": 10
-                },
-                {
-                    "question": "Dance is more than exploring different ways to make a shape or learning a series of steps to music. Which element of dance focuses on the tempo and beat of music?",
-                    "options": [
-                        "Focus",
-                        "Level",
-                        "Space",
-                        "Timing"
-                    ],
-                    "correctAnswer": 3,
-                    "remainingTime": 10
-                },
-                {
-                    "question": "Which type of recreational activity involves a successive group of motions and steps rhythmically performed and timed to music?",
-                    "options": [
-                        "Arts",
-                        "Dance",
-                        "Motion",
-                        "Music"
-                    ],
-                    "correctAnswer": 1,
-                    "remainingTime": 10
-                },
-                {
-                    "question": "An injury is any physiological damage to living tissue caused by immediate physical stress. What exercise id performed before dancing to prevent dance related injuries?",
-                    "options": [
-                        "Cool Down",
-                        "Cool Up",
-                        "Warm Down",
-                        "Warm Up"
-                    ],
-                    "correctAnswer": 3,
-                    "remainingTime": 10
-                },
-                {
-                    "question": "Dancers learn to coordinate muscles to move through proper positions. What kind of bodily shape is observed where both sides show similar or identical movement?",
-                    "options": [
-                        "Asymmetrical",
-                        "Balance",
-                        "Group Shape",
-                        "Symmetrical"
-                    ],
-                    "correctAnswer": 3,
-                    "remainingTime": 10
-                },
-                {
-                    "question": "Energy choices may also reveal emotional states, for examples, a powerful push might be aggressive or playfully boisterous depending on the intent situation. Which of the following dance energy shows trembling and shaking movement?",
-                    "options": [
-                        "Collapsing",
-                        "Suspended",
-                        "Sustained",
-                        "Vibratory"
-                    ],
-                    "correctAnswer": 3,
-                    "remainingTime": 10
-                },
-                {
-                    "question": "Dancers are not just performing artist; their bodies are also the instrument through which the art is created. Which of dance energy shows movement that gradually releases tension and abruptly gives in to gravity, letting the body descend to the floor?",
-                    "options": [
-                        "Collapsing",
-                        "Suspended",
-                        "Sustained",
-                        "Vibratory"
-                    ],
-                    "correctAnswer": 0,
-                    "remainingTime": 10
-                },
-                {
-                    "question": "Dancers require creativity, which helps them to express the music and story lines they dance to using unique body movements. What do you call the skills in executing movement?",
-                    "options": [
-                        "Motion",
-                        "Movement",
-                        "Swinging",
-                        "Technique"
-                    ],
-                    "correctAnswer": 3,
-                    "remainingTime": 10
-                },
-                {
-                    "question": "Dance is a performing art from consisting of sequences of movement either improvised or purposefully selected. This movement has aesthetic and often symbolic value. What is the setting or background establishing the place of action of any dance is important to make the dance more realistic and beautiful?",
-                    "options": [
-                        "Design",
-                        "Proportion",
-                        "Scenery",
-                        "Technique"
-                    ],
-                    "correctAnswer": 2,
-                    "remainingTime": 10
-                }
-            ]
-        }
+        "hasVideo": false,
+        "questions": [
+            {
+                "question": "Space is very important when it comes to dance. What movements may be executed in high, medium, low?",
+                "options": [
+                    "A. Focus",
+                    "B. Level",
+                    "C. Space",
+                    "D. Timing"
+                ],
+                "correctAnswer": 1
+            },
+            {
+                "question": "Dancers require creativity, which helps them to express the music and story lines they dance to using unique body movements. Which Element of dance movements may be executed in different directions, levels and sizes?",
+                "options": [
+                    "A. Focus",
+                    "B. Level",
+                    "C. Space",
+                    "D. Timing"
+                ],
+                "correctAnswer": 2
+            },
+            {
+                "question": "Dance is more than exploring different ways to make a shape or learning a series of steps to music. Which element of dance focuses on the tempo and beat of music?",
+                "options": [
+                    "A. Focus",
+                    "B. Level",
+                    "C. Space",
+                    "D. Timing"
+                ],
+                "correctAnswer": 3
+            },
+            {
+                "question": "Which type of recreational activity involves a successive group of motions and steps rhythmically performed and timed to music?",
+                "options": [
+                    "A. Arts",
+                    "B. Dance",
+                    "C. Motion",
+                    "D. Music"
+                ],
+                "correctAnswer": 1
+            },
+            {
+                "question": "An injury is any physiological damage to living tissue caused by immediate physical stress. What exercise id performed before dancing to prevent dance related injuries?",
+                "options": [
+                    "A. Cool Down",
+                    "B. Cool Up",
+                    "C. Warm Down",
+                    "D. Warm Up"
+                ],
+                "correctAnswer": 3
+            },
+            {
+                "question": "Dancers learn to coordinate muscles to move through proper positions. What kind of bodily shape is observed where both sides show similar or identical movement?",
+                "options": [
+                    "A. Asymmetrical",
+                    "B. Balance",
+                    "C. Group Shape",
+                    "D. Symmetrical"
+                ],
+                "correctAnswer": 3
+            },
+            {
+                "question": "Energy choices may also reveal emotional states, for examples, a powerful push might be aggressive or playfully boisterous depending on the intent situation. Which of the following dance energy shows trembling and shaking movement?",
+                "options": [
+                    "A. Collapsing",
+                    "B. Suspended",
+                    "C. Sustained",
+                    "D. Vibratory"
+                ],
+                "correctAnswer": 3
+            },
+            {
+                "question": "Dancers are not just performing artist; their bodies are also the instrument through which the art is created. Which of dance energy shows movement that gradually releases tension and abruptly gives in to gravity, letting the body descend to the floor?",
+                "options": [
+                    "A. Collapsing",
+                    "B. Suspended",
+                    "C. Sustained",
+                    "D. Vibratory"
+                ],
+                "correctAnswer": 0
+            },
+            {
+                "question": "Dancers require creativity, which helps them to express the music and story lines they dance to using unique body movements. What do you call the skills in executing movement?",
+                "options": [
+                    "A. Motion",
+                    "B. Movement",
+                    "C. Swinging",
+                    "D. Technique"
+                ],
+                "correctAnswer": 3
+            },
+            {
+                "question": "Dance is a performing art from consisting of sequences of movement either improvised or purposefully selected. This movement has aesthetic and often symbolic value. What is the setting or background establishing the place of action of any dance is important to make the dance more realistic and beautiful?",
+                "options": [
+                    "A. Design",
+                    "B. Proportion",
+                    "C. Scenery",
+                    "D. Technique"
+                ],
+                "correctAnswer": 2
+            }
+        ]
     },
     {
         "number": 2,
         "title": "Dance Related Injuries",
-        "selectedContent": "default",
-        "hasClicked": {
-            "pdf": false,
-            "ppt": false,
-            "quiz": false
-        },
-        "quiz": {
-            "status": "inactive",
-            "currentQuestion": null,
-            "questions": [
-                {
-                    "question": "Dancing for too long or too often can lead to a wide range of overuse injuries. Which of the following is NOT a common factor among dancers who have injury?",
-                    "options": [
-                        "Excessive Training duration",
-                        "Hard Dance Floor",
-                        "Poor Shoe Design",
-                        "Wrong choice of dance partner or group"
-                    ],
-                    "correctAnswer": 3,
-                    "remainingTime": 10
-                },
-                {
-                    "question": "Dance may look effortless, but it requires a lot of strength, flexibility and stamina. What type of injuries can occur when the mechanical force that is absorbed by the musculoskeletal structures more than what is accustomed to?",
-                    "options": [
-                        "Acute Injuries",
-                        "Chronic Injuries",
-                        "Moderate Injuries",
-                        "Severe Injuries"
-                    ],
-                    "correctAnswer": 0,
-                    "remainingTime": 10
-                },
-                {
-                    "question": "Nearly half of reported dance injuries are categorized as acute. The most common injuries occur as the dancer lands with a loss of balance. What is the type of acute injury that can occur when you twist your knee after a jump?",
-                    "options": [
-                        "ACL Tear",
-                        "Ankle Sprain",
-                        "Bended Knees",
-                        "Forearm Fracture"
-                    ],
-                    "correctAnswer": 0,
-                    "remainingTime": 10
-                },
-                {
-                    "question": "Healthy bones are extremely resilient and can withstand surprisingly powerful impacts. However, under enough force, they may crack or break. What type of acute injury can cause pain and deformity near the wrist?",
-                    "options": [
-                        "ACL Tear",
-                        "Ankle Sprain",
-                        "Dancers Fracture",
-                        "Forearm Fracture"
-                    ],
-                    "correctAnswer": 3,
-                    "remainingTime": 10
-                },
-                {
-                    "question": "Ligament, tough fibrous band of connective tissue that serves to support the internal organs and hold bones together in proper articulation at the joints. What is the meaning of ACL?",
-                    "options": [
-                        "Aerial Cruciate Ligament",
-                        "Anterior Cruciate Ligament",
-                        "Anterior Crash Ligament",
-                        "Anterior Cut Ligament"
-                    ],
-                    "correctAnswer": 1,
-                    "remainingTime": 10
-                },
-                {
-                    "question": "In any form of dance, great strain is placed on the lower extremity and the strong but sensitive foot. A large percentage of injuries to dancers involve the foot and ankle. What is this type of injury that can occur when you have poor foot mechanics and hard dance floor?",
-                    "options": [
-                        "Achilles Tendonitis",
-                        "Hip and knee Osteoarthritis",
-                        "Patellofemoral Pain Syndrome",
-                        "Plantar Fasciitis"
-                    ],
-                    "correctAnswer": 3,
-                    "remainingTime": 10
-                },
-                {
-                    "question": "Injury often refers to physical damage, but it can be used more figuratively to describe something that's unjust or isn’t physical. What do you call the type of injury when onset of pain and other symptoms occur at a gradual rate?",
-                    "options": [
-                        "Acute",
-                        "Chronic",
-                        "Moderate",
-                        "Severe"
-                    ],
-                    "correctAnswer": 1,
-                    "remainingTime": 10
-                },
-                {
-                    "question": "This will help you to correct foot mechanics and reduce the impact on the foot.",
-                    "options": [
-                        "Footwear",
-                        "Costume",
-                        "Proper Clothing",
-                        "Technique"
-                    ],
-                    "correctAnswer": 0,
-                    "remainingTime": 10
-                },
-                {
-                    "question": "The symptom of this injury is the pain on the side of the ankle.",
-                    "options": [
-                        "Dancers Fracture",
-                        "Stress Fracture",
-                        "Forearm Fracture",
-                        "Ankle Sprain"
-                    ],
-                    "correctAnswer": 3,
-                    "remainingTime": 10
-                },
-                {
-                    "question": "The prevention of this injury is to have adequate rest.",
-                    "options": [
-                        "Hip and Knee Osteoarthritis",
-                        "Patellofemoral pain syndrome",
-                        "Forearm Fracture",
-                        "ACL Tear"
-                    ],
-                    "correctAnswer": 0,
-                    "remainingTime": 10
-                }
-            ]
-        }
+        "hasVideo": false,
+        "questions": [
+            {
+                "question": "Dancing for too long or too often can lead to a wide range of overuse injuries. Which of the following is NOT a common factor among dancers who have injury?",
+                "options": [
+                    "A. Excessive Training duration",
+                    "B. Hard Dance Floor",
+                    "C. Poor Shoe Design",
+                    "D. Wrong choice of dance partner or group"
+                ],
+                "correctAnswer": 3
+            },
+            {
+                "question": "Dance may look effortless, but it requires a lot of strength, flexibility and stamina. What type of injuries can occur when the mechanical force that is absorbed by the musculoskeletal structures more than what is accustomed to?",
+                "options": [
+                    "A. Acute Injuries",
+                    "B. Chronic Injuries",
+                    "C. Moderate Injuries",
+                    "D. Severe Injuries"
+                ],
+                "correctAnswer": 0
+            },
+            {
+                "question": "Nearly half of reported dance injuries are categorized as acute. The most common injuries occur as the dancer lands with a loss of balance. What is the type of acute injury that can occur when you twist your knee after a jump?",
+                "options": [
+                    "A. ACL Tear",
+                    "B. Ankle Sprain",
+                    "C. Bended Knees",
+                    "D. Forearm Fracture"
+                ],
+                "correctAnswer": 0
+            },
+            {
+                "question": "Healthy bones are extremely resilient and can withstand surprisingly powerful impacts. However, under enough force, they may crack or break. What type of acute injury can cause pain and deformity near the wrist?",
+                "options": [
+                    "A. ACL Tear",
+                    "B. Ankle Sprain",
+                    "C. Dancers Fracture",
+                    "D. Forearm Fracture"
+                ],
+                "correctAnswer": 3
+            },
+            {
+                "question": "Ligament, tough fibrous band of connective tissue that serves to support the internal organs and hold bones together in proper articulation at the joints. What is the meaning of ACL?",
+                "options": [
+                    "A. Aerial Cruciate Ligament",
+                    "B. Anterior Cruciate Ligament",
+                    "C. Anterior Crash Ligament",
+                    "D. Anterior Cut Ligament"
+                ],
+                "correctAnswer": 1
+            },
+            {
+                "question": "In any form of dance, great strain is placed on the lower extremity and the strong but sensitive foot. A large percentage of injuries to dancers involve the foot and ankle. What is this type of injury that can occur when you have poor foot mechanics and hard dance floor?",
+                "options": [
+                    "A. Achilles Tendonitis",
+                    "B. Hip and knee Osteoarthritis",
+                    "C. Patellofemoral Pain Syndrome",
+                    "D. Plantar Fasciitis"
+                ],
+                "correctAnswer": 3
+            },
+            {
+                "question": "Injury often refers to physical damage, but it can be used more figuratively to describe something that's unjust or isn’t physical. What do you call the type of injury when onset of pain and other symptoms occur at a gradual rate?",
+                "options": [
+                    "A. Acute",
+                    "B. Chronic",
+                    "C. Moderate",
+                    "D. Severe"
+                ],
+                "correctAnswer": 1
+            },
+            {
+                "question": "This will help you to correct foot mechanics and reduce the impact on the foot.",
+                "options": [
+                    "A. Footwear",
+                    "B. Costume",
+                    "C. Proper Clothing",
+                    "D. Technique"
+                ],
+                "correctAnswer": 0
+            },
+            {
+                "question": "The symptom of this injury is the pain on the side of the ankle.",
+                "options": [
+                    "A. Dancers Fracture",
+                    "B. Stress Fracture",
+                    "C. Forearm Fracture",
+                    "D. Ankle Sprain"
+                ],
+                "correctAnswer": 3
+            },
+            {
+                "question": "The prevention of this injury is to have adequate rest.",
+                "options": [
+                    "A. Hip and Knee Osteoarthritis",
+                    "B. Patellofemoral pain syndrome",
+                    "C. Forearm Fracture",
+                    "D. ACL Tear"
+                ],
+                "correctAnswer": 0
+            }
+        ]
     },
     {
         "number": 3,
         "title": "Folk Dance in the Philippines",
-        "selectedContent": "default",
-        "hasClicked": {
-            "pdf": false,
-            "ppt": false,
-            "video": false,
-            "quiz": false
-        },
-        "quiz": {
-            "status": "inactive",
-            "currentQuestion": null,
-            "questions": [
-                {
-                    "question": "Folk dance is developed by people that reflect the life of the people of a certain country or region. Who was acknowledge as the first National Artist for Dance and at the same time the Mother of Philippine Folk Dance?",
-                    "options": [
-                        "Alicia Reyes Garcia",
-                        "Francisca Reyes Aquino",
-                        "Julieta Malabanan",
-                        "Lisa M. Elizalde"
-                    ],
-                    "correctAnswer": 1,
-                    "remainingTime": 10
-                },
-                {
-                    "question": "Folk dance are the indigenous dances of any specific “folk” or the common people. What type of dance expresses feud and enmity where two male dancers engage in physical combat with spartan-like intensity?",
-                    "options": [
-                        "Drama Dance",
-                        "Festival Dance",
-                        "Interpretative Dance",
-                        "War Dance"
-                    ],
-                    "correctAnswer": 3,
-                    "remainingTime": 10
-                },
-                {
-                    "question": "Folk dances are important because they preserve the Philippine culture and pass it on to the next generation. What nature of dance depicts actions characterizing in a community?",
-                    "options": [
-                        "Courtship Dance",
-                        "National Dance",
-                        "Occupational Dance",
-                        "War Dance"
-                    ],
-                    "correctAnswer": 2,
-                    "remainingTime": 10
-                },
-                {
-                    "question": "Traditional dance involves not only dance performance, but traditional music, costume and attributes as well. Which of the following nature of dance is performed in relations to feast, a celebration, a barrio fiesta, a bountiful harvest and a good fortune.",
-                    "options": [
-                        "Courtship Dance",
-                        "Festival Dance",
-                        "Interpretative Dance",
-                        "War Dance"
-                    ],
-                    "correctAnswer": 1,
-                    "remainingTime": 10
-                },
-                {
-                    "question": "What type of Folk Dance came from the people of Southern Islands of the Philippines?",
-                    "options": [
-                        "Folk Dance",
-                        "Christian Dance",
-                        "Muslim Dance",
-                        "Tribal Dance"
-                    ],
-                    "correctAnswer": 2,
-                    "remainingTime": 10
-                },
-                {
-                    "question": "Which dance came from western influences such as the Tagalogs, Ilokanos, Pampangeῆos, and Bicolanos?",
-                    "options": [
-                        "Folk Dance",
-                        "Low land Christian Dance",
-                        "Muslim Dance",
-                        "Tribal Dance"
-                    ],
-                    "correctAnswer": 1,
-                    "remainingTime": 10
-                },
-                {
-                    "question": "Which dance genre is primarily performed for social functions usually uses traditional music?",
-                    "options": [
-                        "Ballroom",
-                        "Contemporary",
-                        "Folk Dance",
-                        "Modern"
-                    ],
-                    "correctAnswer": 2,
-                    "remainingTime": 10
-                },
-                {
-                    "question": "This dances serve as ritual as one passes to a different stage in life.",
-                    "options": [
-                        "Festival dances",
-                        "Occupational dances",
-                        "Ritual and ceremonial dances",
-                        "Life-cycle dances  "
-                    ],
-                    "correctAnswer": 3,
-                    "remainingTime": 10
-                },
-                {
-                    "question": "This dances that mimic animals, inanimate objects, or other people.",
-                    "options": [
-                        "Joke and trickster dances",
-                        "Mimetic or drama dances",
-                        "Occupational dances",
-                        "Festival dances"
-                    ],
-                    "correctAnswer": 1,
-                    "remainingTime": 10
-                },
-                {
-                    "question": "This dance depicts a battle between Muslim (Moro) and Christian Filipinos",
-                    "options": [
-                        "Pandanggo",
-                        "Alay",
-                        "Maglalatik",
-                        "Pukol Dance"
-                    ],
-                    "correctAnswer": 2,
-                    "remainingTime": 10
-                }
-            ]
-        }
+        "hasVideo": true,
+        "questions": [
+            {
+                "question": "Folk dance is developed by people that reflect the life of the people of a certain country or region. Who was acknowledge as the first National Artist for Dance and at the same time the Mother of Philippine Folk Dance?",
+                "options": [
+                    "A. Alicia Reyes Garcia",
+                    "B. Francisca Reyes Aquino",
+                    "C. Julieta Malabanan",
+                    "D. Lisa M. Elizalde"
+                ],
+                "correctAnswer": 1
+            },
+            {
+                "question": "Folk dance are the indigenous dances of any specific “folk” or the common people. What type of dance expresses feud and enmity where two male dancers engage in physical combat with spartan-like intensity?",
+                "options": [
+                    "A. Drama Dance",
+                    "B. Festival Dance",
+                    "C. Interpretative Dance",
+                    "D. War Dance"
+                ],
+                "correctAnswer": 3
+            },
+            {
+                "question": "Folk dances are important because they preserve the Philippine culture and pass it on to the next generation. What nature of dance depicts actions characterizing in a community?",
+                "options": [
+                    "A. Courtship Dance",
+                    "B. National Dance",
+                    "C. Occupational Dance",
+                    "D. War Dance"
+                ],
+                "correctAnswer": 2
+            },
+            {
+                "question": "Traditional dance involves not only dance performance, but traditional music, costume and attributes as well. Which of the following nature of dance is performed in relations to feast, a celebration, a barrio fiesta, a bountiful harvest and a good fortune.",
+                "options": [
+                    "A. Courtship Dance",
+                    "B. Festival Dance",
+                    "C. Interpretative Dance",
+                    "D. War Dance"
+                ],
+                "correctAnswer": 1
+            },
+            {
+                "question": "What type of Folk Dance came from the people of Southern Islands of the Philippines?",
+                "options": [
+                    "A. Folk Dance",
+                    "B. Christian Dance",
+                    "C. Muslim Dance",
+                    "D. Tribal Dance"
+                ],
+                "correctAnswer": 2
+            },
+            {
+                "question": "Which dance came from western influences such as the Tagalogs, Ilokanos, Pampangenos, and Bicolanos?",
+                "options": [
+                    "A. Folk Dance",
+                    "B. Low land Christian Dance",
+                    "C. Muslim Dance",
+                    "D. Tribal Dance"
+                ],
+                "correctAnswer": 1
+            },
+            {
+                "question": "Which dance genre is primarily performed for social functions usually uses traditional music?",
+                "options": [
+                    "A. Ballroom",
+                    "B. Contemporary",
+                    "C. Folk Dance",
+                    "D. Modern"
+                ],
+                "correctAnswer": 2
+            },
+            {
+                "question": "This dances serve as ritual as one passes to a different stage in life.",
+                "options": [
+                    "A. Festival dances",
+                    "B. Occupational dances",
+                    "C. Ritual and ceremonial dances",
+                    "D. Life-cycle dances  "
+                ],
+                "correctAnswer": 3
+            },
+            {
+                "question": "This dances that mimic animals, inanimate objects, or other people.",
+                "options": [
+                    "A. Joke and trickster dances",
+                    "B. Mimetic or drama dances",
+                    "C. Occupational dances",
+                    "D. Festival dances"
+                ],
+                "correctAnswer": 1
+            },
+            {
+                "question": "This dance depicts a battle between Muslim (Moro) and Christian Filipinos",
+                "options": [
+                    "A. Pandanggo",
+                    "B. Alay",
+                    "C. Maglalatik",
+                    "D. Pukol Dance"
+                ],
+                "correctAnswer": 2
+            }
+        ]
     },
     {
         "number": 4,
         "title": "Dancesport",
-        "selectedContent": "default",
-        "hasClicked": {
-            "pdf": false,
-            "ppt": false,
-            "quiz": false
-        },
-        "quiz": {
-            "status": "inactive",
-            "currentQuestion": null,
-            "questions": [
-                {
-                    "question": "This is nonverbal communication of the man and lady through shape and visual and body weight.",
-                    "options": [
-                        "Shape",
-                        "Lead and Follow",
-                        "Posture",
-                        "Transfering of Weight"
-                    ],
-                    "correctAnswer": 1,
-                    "remainingTime": 10
-                },
-                {
-                    "question": "It is a progressive dance marked by long flowing movements, continuous turns and rise and fall.",
-                    "options": [
-                        "Foxtrot",
-                        "Waltz",
-                        "Rumba",
-                        "Quickstep"
-                    ],
-                    "correctAnswer": 1,
-                    "remainingTime": 10
-                },
-                {
-                    "question": "It is often called as Love of Dance.",
-                    "options": [
-                        "Chachacha",
-                        "Rumba",
-                        "Samba",
-                        "Salsa"
-                    ],
-                    "correctAnswer": 1,
-                    "remainingTime": 10
-                },
-                {
-                    "question": "What are the governing bodies of dancesports?",
-                    "options": [
-                        "WDC and WDSF",
-                        "WWD and DSF",
-                        "WDSF and PSC",
-                        "SEA games and Olympics"
-                    ],
-                    "correctAnswer": 0,
-                    "remainingTime": 10
-                },
-                {
-                    "question": "It is very fast and energy consuming dance.",
-                    "options": [
-                        "Waltz",
-                        "Chachacha",
-                        "Jive",
-                        "Samba"
-                    ],
-                    "correctAnswer": 2,
-                    "remainingTime": 10
-                },
-                {
-                    "question": "This dance consists of 6/8 Time signature with the first beat accented.",
-                    "options": [
-                        "Tango",
-                        "Waltz",
-                        "Viennese Waltz",
-                        "Quickstep"
-                    ],
-                    "correctAnswer": 2,
-                    "remainingTime": 10
-                },
-                {
-                    "question": "It is a smooth dance in which dancers make long, flowing movements across the floor.",
-                    "options": [
-                        "Waltz",
-                        "Foxtrot",
-                        "Viennese Waltz",
-                        "Quickstep"
-                    ],
-                    "correctAnswer": 1,
-                    "remainingTime": 10
-                },
-                {
-                    "question": "What is the one of the most dramatic of all latin dances?",
-                    "options": [
-                        "Samba",
-                        "Chachacha",
-                        "Rumba",
-                        "Paso Doble"
-                    ],
-                    "correctAnswer": 3,
-                    "remainingTime": 10
-                },
-                {
-                    "question": "This enables a dancer to stand out on the floor, which shows sophistication and confidence.",
-                    "options": [
-                        "Stretch",
-                        "Posture",
-                        "Partner",
-                        "Hold"
-                    ],
-                    "correctAnswer": 1,
-                    "remainingTime": 10
-                },
-                {
-                    "question": "This goes with partners (male and lady) competing against other partners dancing on the floor at one time.",
-                    "options": [
-                        "Dancesport",
-                        "Sport",
-                        "Social Dancing",
-                        "Group"
-                    ],
-                    "correctAnswer": 0,
-                    "remainingTime": 10
-                }
-            ]
-        }
+        "hasVideo": false,
+        "questions": [
+            {
+                "question": "This is nonverbal communication of the man and lady through shape and visual and body weight.",
+                "options": [
+                    "A. Shape",
+                    "B. Lead and Follow",
+                    "C. Posture",
+                    "D. Transfering of Weight"
+                ],
+                "correctAnswer": 1
+            },
+            {
+                "question": "It is a progressive dance marked by long flowing movements, continuous turns and rise and fall.",
+                "options": [
+                    "A. Foxtrot",
+                    "B. Waltz",
+                    "C. Rumba",
+                    "D. Quickstep"
+                ],
+                "correctAnswer": 1
+            },
+            {
+                "question": "It is often called as Love of Dance.",
+                "options": [
+                    "A. Chachacha",
+                    "B. Rumba",
+                    "C. Samba",
+                    "D. Salsa"
+                ],
+                "correctAnswer": 1
+            },
+            {
+                "question": "What are the governing bodies of dancesports?",
+                "options": [
+                    "A. WDC and WDSF",
+                    "B. WWD and DSF",
+                    "C. WDSF and PSC",
+                    "D. SEA games and Olympics"
+                ],
+                "correctAnswer": 0
+            },
+            {
+                "question": "It is very fast and energy consuming dance.",
+                "options": [
+                    "A. Waltz",
+                    "B. Chachacha",
+                    "C. Jive",
+                    "D. Samba"
+                ],
+                "correctAnswer": 2
+            },
+            {
+                "question": "This dance consists of 6/8 Time signature with the first beat accented.",
+                "options": [
+                    "A. Tango",
+                    "B. Waltz",
+                    "C. Viennese Waltz",
+                    "D. Quickstep"
+                ],
+                "correctAnswer": 2
+            },
+            {
+                "question": "It is a smooth dance in which dancers make long, flowing movements across the floor.",
+                "options": [
+                    "A. Waltz",
+                    "B. Foxtrot",
+                    "C. Viennese Waltz",
+                    "D. Quickstep"
+                ],
+                "correctAnswer": 1
+            },
+            {
+                "question": "What is the one of the most dramatic of all latin dances?",
+                "options": [
+                    "A. Samba",
+                    "B. Chachacha",
+                    "C. Rumba",
+                    "D. Paso Doble"
+                ],
+                "correctAnswer": 3
+            },
+            {
+                "question": "This enables a dancer to stand out on the floor, which shows sophistication and confidence.",
+                "options": [
+                    "A. Stretch",
+                    "B. Posture",
+                    "C. Partner",
+                    "D. Hold"
+                ],
+                "correctAnswer": 1
+            },
+            {
+                "question": "This goes with partners (male and lady) competing against other partners dancing on the floor at one time.",
+                "options": [
+                    "A. Dancesport",
+                    "B. Sport",
+                    "C. Social Dancing",
+                    "D. Group"
+                ],
+                "correctAnswer": 0
+            }
+        ]
     },
     {
         "number": 5,
         "title": "Cheerdance",
-        "selectedContent": "default",
-        "hasClicked": {
-            "pdf": false,
-            "ppt": false,
-            "quiz": false
-        },
-        "quiz": {
-            "status": "inactive",
-            "currentQuestion": null,
-            "questions": [
-                {
-                    "question": "It is a very dynamic and excellent way to shake up a crowd quickly.",
-                    "options": [
-                        "Tumbling",
-                        "Music",
-                        "Highlights",
-                        "Pyramid"
-                    ],
-                    "correctAnswer": 0,
-                    "remainingTime": 10
-                },
-                {
-                    "question": "The following are elements of jump. Except?",
-                    "options": [
-                        "Tumbling",
-                        "Lift",
-                        "Approach",
-                        "Landing"
-                    ],
-                    "correctAnswer": 0,
-                    "remainingTime": 10
-                },
-                {
-                    "question": "A simple line where the back is positioned in the windows (space between individuals) of the front line.",
-                    "options": [
-                        "Staggered Line",
-                        "Bowling Pin",
-                        "In Out In Out",
-                        "Pyramid"
-                    ],
-                    "correctAnswer": 0,
-                    "remainingTime": 10
-                },
-                {
-                    "question": "This are coordination of organized words and movements relating to an athletic event.",
-                    "options": [
-                        "Dance",
-                        "Intermission",
-                        "Cheers",
-                        "Script"
-                    ],
-                    "correctAnswer": 2,
-                    "remainingTime": 10
-                },
-                {
-                    "question": "This requires stamina, strength and flexibility and they greatly improve every area in cheerdance routine.",
-                    "options": [
-                        "Lift",
-                        "Jumping",
-                        "Posture",
-                        "Routine"
-                    ],
-                    "correctAnswer": 1,
-                    "remainingTime": 10
-                },
-                {
-                    "question": "This involves whipping of the legs and feet together to end with a small rebound.",
-                    "options": [
-                        "Execution",
-                        "Approach",
-                        "Lift",
-                        "Landing"
-                    ],
-                    "correctAnswer": 3,
-                    "remainingTime": 10
-                },
-                {
-                    "question": "What formation of cheerdance is a simple line where the back is positioned in the windows (space in between individuals) of the front line.",
-                    "options": [
-                        "Pyramid",
-                        "Bowling Pin",
-                        "Staggered Line",
-                        "Flyer"
-                    ],
-                    "correctAnswer": 2,
-                    "remainingTime": 10
-                },
-                {
-                    "question": "This section shows support for the school or program that the cheerleaders represent.",
-                    "options": [
-                        "Music Section",
-                        "Cheer Section",
-                        "Dance Section",
-                        "Routine Section"
-                    ],
-                    "correctAnswer": 1,
-                    "remainingTime": 10
-                },
-                {
-                    "question": "What is the first stage of a jump?",
-                    "options": [
-                        "Approach",
-                        "Lift",
-                        "Execution",
-                        "Landing"
-                    ],
-                    "correctAnswer": 0,
-                    "remainingTime": 10
-                },
-                {
-                    "question": "This basic formation works great when highlighting a few members on a squad/team.",
-                    "options": [
-                        "Pyramid",
-                        "Bowling Pin",
-                        "Staggered Line",
-                        "Flyer"
-                    ],
-                    "correctAnswer": 1,
-                    "remainingTime": 10
-                }
-            ]
-        }
+        "hasVideo": false,
+        "questions": [
+            {
+                "question": "It is a very dynamic and excellent way to shake up a crowd quickly.",
+                "options": [
+                    "A. Tumbling",
+                    "B. Music",
+                    "C. Highlights",
+                    "D. Pyramid"
+                ],
+                "correctAnswer": 0
+            },
+            {
+                "question": "The following are elements of jump. Except?",
+                "options": [
+                    "A. Tumbling",
+                    "B. Lift",
+                    "C. Approach",
+                    "D. Landing"
+                ],
+                "correctAnswer": 0
+            },
+            {
+                "question": "A simple line where the back is positioned in the windows (space between individuals) of the front line.",
+                "options": [
+                    "A. Staggered Line",
+                    "B. Bowling Pin",
+                    "C. In Out In Out",
+                    "D. Pyramid"
+                ],
+                "correctAnswer": 0
+            },
+            {
+                "question": "This are coordination of organized words and movements relating to an athletic event.",
+                "options": [
+                    "A. Dance",
+                    "B. Intermission",
+                    "C. Cheers",
+                    "D. Script"
+                ],
+                "correctAnswer": 2
+            },
+            {
+                "question": "This requires stamina, strength and flexibility and they greatly improve every area in cheerdance routine.",
+                "options": [
+                    "A. Lift",
+                    "B. Jumping",
+                    "C. Posture",
+                    "D. Routine"
+                ],
+                "correctAnswer": 1
+            },
+            {
+                "question": "This involves whipping of the legs and feet together to end with a small rebound.",
+                "options": [
+                    "A. Execution",
+                    "B. Approach",
+                    "C. Lift",
+                    "D. Landing"
+                ],
+                "correctAnswer": 3
+            },
+            {
+                "question": "What formation of cheerdance is a simple line where the back is positioned in the windows (space in between individuals) of the front line.",
+                "options": [
+                    "A. Pyramid",
+                    "B. Bowling Pin",
+                    "C. Staggered Line",
+                    "D. Flyer"
+                ],
+                "correctAnswer": 2
+            },
+            {
+                "question": "This section shows support for the school or program that the cheerleaders represent.",
+                "options": [
+                    "A. Music Section",
+                    "B. Cheer Section",
+                    "C. Dance Section",
+                    "D. Routine Section"
+                ],
+                "correctAnswer": 1
+            },
+            {
+                "question": "What is the first stage of a jump?",
+                "options": [
+                    "A. Approach",
+                    "B. Lift",
+                    "C. Execution",
+                    "D. Landing"
+                ],
+                "correctAnswer": 0
+            },
+            {
+                "question": "This basic formation works great when highlighting a few members on a squad/team.",
+                "options": [
+                    "A. Pyramid",
+                    "B. Bowling Pin",
+                    "C. Staggered Line",
+                    "D. Flyer"
+                ],
+                "correctAnswer": 1
+            }
+        ]
     },
     {
         "number": 6,
         "title": "Hip-Hop and Street Dance",
-        "selectedContent": "default",
-        "hasClicked": {
-            "pdf": false,
-            "ppt": false,
-            "quiz": false
-        },
-        "quiz": {
-            "status": "inactive",
-            "currentQuestion": null,
-            "questions": [
-                {
-                    "question": "What is the first element of hip hop culture?",
-                    "options": [
-                        "Mcing",
-                        "Djing",
-                        "B-boying",
-                        "Grafitti Art"
-                    ],
-                    "correctAnswer": 1,
-                    "remainingTime": 10
-                },
-                {
-                    "question": "What is a street dance and one of the original funk styles that came from Fresno, California during the late 1960s–1970s?",
-                    "options": [
-                        "B-boying",
-                        "Mcing",
-                        "Popping",
-                        "Locking"
-                    ],
-                    "correctAnswer": 2,
-                    "remainingTime": 10
-                },
-                {
-                    "question": "What is a street dance popularized in the United States, characterized by free, expressive, exaggerated, and highly energetic movement?",
-                    "options": [
-                        "Popping",
-                        "Locking",
-                        "Krumping",
-                        "Breakdancing"
-                    ],
-                    "correctAnswer": 2,
-                    "remainingTime": 10
-                },
-                {
-                    "question": "It consists of moving the arms to the music beat typically in a movement of the arms over and behind the shoulder.",
-                    "options": [
-                        "Popping",
-                        "Locking",
-                        "B-boying",
-                        "Waacking"
-                    ],
-                    "correctAnswer": 3,
-                    "remainingTime": 10
-                },
-                {
-                    "question": "The basic movements of this dance are a fast heel-and-toe action with a style suitable for various types of electronic music. Most variants also incorporate arm movements.",
-                    "options": [
-                        "Shuffling",
-                        "Popping",
-                        "Locking",
-                        "Waacking"
-                    ],
-                    "correctAnswer": 0,
-                    "remainingTime": 10
-                },
-                {
-                    "question": "What is a style of funk dance, which is today also associated with hip hop?",
-                    "options": [
-                        "Popping",
-                        "Locking",
-                        "Shuffling",
-                        "Waacking"
-                    ],
-                    "correctAnswer": 1,
-                    "remainingTime": 10
-                },
-                {
-                    "question": "What is a footwork oriented performed while standing up?",
-                    "options": [
-                        "Top rock",
-                        "Down rock",
-                        "Freeze",
-                        "Power moves"
-                    ],
-                    "correctAnswer": 0,
-                    "remainingTime": 10
-                },
-                {
-                    "question": "It comprises of full body spins and rotations that give the illusion of defying gravity.",
-                    "options": [
-                        "Top rock",
-                        "Down rock",
-                        "Freeze",
-                        "Power moves"
-                    ],
-                    "correctAnswer": 3,
-                    "remainingTime": 10
-                },
-                {
-                    "question": "It is a range of street dance styles primarily performed to hip hop music or that have evolved as part of hip hop culture.",
-                    "options": [
-                        "Hip Hop",
-                        "Top Rock",
-                        "Breakdance",
-                        "Power Moves"
-                    ],
-                    "correctAnswer": 0,
-                    "remainingTime": 10
-                },
-                {
-                    "question": "It is an art form, a means of cultural expression.",
-                    "options": [
-                        "Hip Hop",
-                        "Top rock",
-                        "Graffiti Art",
-                        "Shuffling"
-                    ],
-                    "correctAnswer": 2,
-                    "remainingTime": 10
-                }
-            ]
-        }
+        "hasVideo": false,
+        "questions": [
+            {
+                "question": "What is the first element of hip hop culture?",
+                "options": [
+                    "A. Mcing",
+                    "B. Djing",
+                    "C. B-boying",
+                    "D. Grafitti Art"
+                ],
+                "correctAnswer": 1
+            },
+            {
+                "question": "What is a street dance and one of the original funk styles that came from Fresno, California during the late 1960s–1970s?",
+                "options": [
+                    "A. B-boying",
+                    "B. Mcing",
+                    "C. Popping",
+                    "D. Locking"
+                ],
+                "correctAnswer": 2
+            },
+            {
+                "question": "What is a street dance popularized in the United States, characterized by free, expressive, exaggerated, and highly energetic movement?",
+                "options": [
+                    "A. Popping",
+                    "B. Locking",
+                    "C. Krumping",
+                    "D. Breakdancing"
+                ],
+                "correctAnswer": 2
+            },
+            {
+                "question": "It consists of moving the arms to the music beat typically in a movement of the arms over and behind the shoulder.",
+                "options": [
+                    "A. Popping",
+                    "B. Locking",
+                    "C. B-boying",
+                    "D. Waacking"
+                ],
+                "correctAnswer": 3
+            },
+            {
+                "question": "The basic movements of this dance are a fast heel-and-toe action with a style suitable for various types of electronic music. Most variants also incorporate arm movements.",
+                "options": [
+                    "A. Shuffling",
+                    "B. Popping",
+                    "C. Locking",
+                    "D. Waacking"
+                ],
+                "correctAnswer": 0
+            },
+            {
+                "question": "What is a style of funk dance, which is today also associated with hip hop?",
+                "options": [
+                    "A. Popping",
+                    "B. Locking",
+                    "C. Shuffling",
+                    "D. Waacking"
+                ],
+                "correctAnswer": 1
+            },
+            {
+                "question": "What is a footwork oriented performed while standing up?",
+                "options": [
+                    "A. Top rock",
+                    "B. Down rock",
+                    "C. Freeze",
+                    "D. Power moves"
+                ],
+                "correctAnswer": 0
+            },
+            {
+                "question": "It comprises of full body spins and rotations that give the illusion of defying gravity.",
+                "options": [
+                    "A. Top rock",
+                    "B. Down rock",
+                    "C. Freeze",
+                    "D. Power moves"
+                ],
+                "correctAnswer": 3
+            },
+            {
+                "question": "It is a range of street dance styles primarily performed to hip hop music or that have evolved as part of hip hop culture.",
+                "options": [
+                    "A. Hip Hop",
+                    "B. Top Rock",
+                    "C. Breakdance",
+                    "D. Power Moves"
+                ],
+                "correctAnswer": 0
+            },
+            {
+                "question": "It is an art form, a means of cultural expression.",
+                "options": [
+                    "A. Hip Hop",
+                    "B. Top rock",
+                    "C. Graffiti Art",
+                    "D. Shuffling"
+                ],
+                "correctAnswer": 2
+            }
+        ]
     }
 ]

@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <script>
+    const host = 'https://script.google.com/macros/s/AKfycbzGUN6GEiPZmK61-OKgy9uxpLbHlc1rg-eUEBbfZLrzidGnmlE9iSxZAba-029P5p4u1g/exec';
+
+    sendStudentData('./saveStudent1.json');
+    sendStudentData('./saveStudent2.json');
+    sendStudentData('./updateStudent1.json');
+
+    async function sendStudentData(filename) {
+      const studentData = await loadJson(filename);
+
+      const response = await fetch(host, {
+        method: 'POST',
+        body: JSON.stringify(studentData),
+      });
+
+      const data = await response.json();
+      console.log(data);
+      console.log(data.error);
+    }
+
+    async function loadJson(filename) {
+      const response = await fetch(filename)
+      return response.json();
+    }
+  </script>
+</body>
+
+</html>
