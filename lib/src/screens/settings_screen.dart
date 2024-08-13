@@ -55,7 +55,7 @@ class Header extends StatelessWidget {
                     ),
                     const SizedBox(height: values.small),
                     Text(
-                      Utils.getDateTime('EEEE, MMMM d y'),
+                      Utils.getDateTime('EEEE, d MMMM, y'),
                       style: values.getTextStyle(context, 'bodyMedium',
                           color: colors.primary, weight: FontWeight.w400),
                     ),

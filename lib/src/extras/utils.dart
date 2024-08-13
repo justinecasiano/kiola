@@ -40,7 +40,7 @@ class Utils {
     return {
       'username':
           RegExp(r'^[a-zA-Z0-9]{4}[a-zA-Z0-9\s.]{0,16}$').hasMatch(value),
-      'email': RegExp(r'^[a-zA-Z0-9]{4,}@[a-zA-Z0-9]+\.[a-zA-Z0-9.]{3,}$')
+      'email': RegExp(r'^[a-zA-Z0-9.]{4,}@[a-zA-Z0-9.]+\.[a-zA-Z0-9.]{3,}$')
           .hasMatch(value),
     }[info];
   }

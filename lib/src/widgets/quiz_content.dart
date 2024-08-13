@@ -407,7 +407,7 @@ class QuizOutro extends StatelessWidget {
                   borderRadius: values.small + 5,
                   padding: EdgeInsets.symmetric(
                       vertical: values.small, horizontal: values.medium),
-                  border: Border.all(color: colors.accentDark, width: 2),
+                  border: Border.all(color: colors.secondary, width: 2),
                   child: Column(
                     children: [
                       Text(
@@ -415,10 +415,14 @@ class QuizOutro extends StatelessWidget {
                         style: values.getTextStyle(context, 'headlineLarge',
                             color: colors.accentLight, weight: FontWeight.bold),
                       ),
-                      Text(
-                        'Correct',
-                        style: values.getTextStyle(context, 'titleSmall',
-                            color: colors.accentDark, weight: FontWeight.w600),
+                      FittedBox(
+                        fit: BoxFit.scaleDown,
+                        child: Text(
+                          'Correct',
+                          style: values.getTextStyle(context, 'titleSmall',
+                              color: colors.accentDark,
+                              weight: FontWeight.w600),
+                        ),
                       ),
                     ],
                   ),
@@ -434,7 +438,7 @@ class QuizOutro extends StatelessWidget {
                   borderRadius: values.small + 5,
                   padding: EdgeInsets.symmetric(
                       vertical: values.small, horizontal: values.medium),
-                  border: Border.all(color: colors.accentDark, width: 2),
+                  border: Border.all(color: colors.secondary, width: 2),
                   child: Column(
                     children: [
                       Text(
@@ -442,10 +446,14 @@ class QuizOutro extends StatelessWidget {
                         style: values.getTextStyle(context, 'headlineLarge',
                             color: Colors.grey, weight: FontWeight.bold),
                       ),
-                      Text(
-                        'Incorrect',
-                        style: values.getTextStyle(context, 'titleSmall',
-                            color: colors.accentDark, weight: FontWeight.w600),
+                      FittedBox(
+                        fit: BoxFit.scaleDown,
+                        child: Text(
+                          'Incorrect',
+                          style: values.getTextStyle(context, 'titleSmall',
+                              color: colors.accentDark,
+                              weight: FontWeight.w600),
+                        ),
                       ),
                     ],
                   ),
@@ -508,7 +516,7 @@ class AccuracyBar extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return RoundedContainer(
-      border: Border.all(color: colors.accentDark, width: 2),
+      border: Border.all(color: colors.secondary, width: 2),
       padding: EdgeInsets.all(values.small + 5),
       borderRadius: values.small + 5,
       child: Column(

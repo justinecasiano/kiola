@@ -38,13 +38,33 @@ class _RegisterState extends State<Register> {
   ) {
     return TextField(
       controller: controller,
+      cursorColor: colors.secondary,
       autocorrect: false,
       enableSuggestions: false,
       onChanged: onChange,
       style: values.getTextStyle(context, 'titleMedium',
           color: colors.secondary, weight: FontWeight.bold),
       decoration: InputDecoration(
-        isDense: true,
+        contentPadding: EdgeInsets.symmetric(
+            horizontal: values.large, vertical: values.medium),
+        border: isValid
+            ? OutlineInputBorder(
+                borderRadius: BorderRadius.circular(values.large * 2),
+                borderSide: BorderSide(color: colors.secondary, width: 3),
+              )
+            : OutlineInputBorder(
+                borderRadius: BorderRadius.circular(values.large * 2),
+                borderSide: BorderSide(color: Colors.red, width: 3),
+              ),
+        focusedBorder: isValid
+            ? OutlineInputBorder(
+                borderRadius: BorderRadius.circular(values.large * 2),
+                borderSide: BorderSide(color: colors.secondary, width: 3),
+              )
+            : OutlineInputBorder(
+                borderRadius: BorderRadius.circular(values.large * 2),
+                borderSide: BorderSide(color: Colors.red, width: 3),
+              ),
         errorText: isValid ? null : errorText,
         errorStyle: isValid
             ? null
@@ -53,9 +73,6 @@ class _RegisterState extends State<Register> {
         hintText: hintText,
         hintStyle: values.getTextStyle(context, 'titleMedium',
             color: colors.secondary, weight: FontWeight.w400),
-        border: InputBorder.none,
-        contentPadding: const EdgeInsets.symmetric(
-            horizontal: values.medium, vertical: values.small - 5),
       ),
     );
   }
@@ -90,40 +107,30 @@ class _RegisterState extends State<Register> {
               Padding(
                 padding: EdgeInsets.symmetric(
                     horizontal: Utils.appGetWidth(context, 12)),
-                child: RoundedContainer(
-                  color: Colors.transparent,
-                  borderRadius: values.large + values.large,
-                  border: Border.all(color: colors.secondary, width: 3),
-                  child: createTextField(
-                    'Juan dela Cruz',
-                    'Invalid username',
-                    isUsernameValid,
-                    usernameController,
-                    (value) {
-                      setState(() =>
-                          isUsernameValid = Utils.validate('username', value)!);
-                    },
-                  ),
+                child: createTextField(
+                  'Juan dela Cruz',
+                  'Invalid username',
+                  isUsernameValid,
+                  usernameController,
+                  (value) {
+                    setState(() =>
+                        isUsernameValid = Utils.validate('username', value)!);
+                  },
                 ),
               ),
               const SizedBox(height: values.medium),
               Padding(
                 padding: EdgeInsets.symmetric(
                     horizontal: Utils.appGetWidth(context, 12)),
-                child: RoundedContainer(
-                  color: Colors.transparent,
-                  borderRadius: values.large + values.large,
-                  border: Border.all(color: colors.secondary, width: 3),
-                  child: createTextField(
-                    'jdelacruz@umak.edu.ph',
-                    'Invalid email',
-                    isEmailValid,
-                    emailController,
-                    (value) {
-                      setState(
-                          () => isEmailValid = Utils.validate('email', value)!);
-                    },
-                  ),
+                child: createTextField(
+                  'jdelacruz@umak.edu.ph',
+                  'Invalid email',
+                  isEmailValid,
+                  emailController,
+                  (value) {
+                    setState(
+                        () => isEmailValid = Utils.validate('email', value)!);
+                  },
                 ),
               ),
               const SizedBox(height: values.large),

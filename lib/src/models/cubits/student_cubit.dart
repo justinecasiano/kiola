@@ -47,6 +47,7 @@ class StudentCubit extends Cubit<Student> {
     student.lessonSummary[state.currentLesson].progress =
         state.getCurrentLessonSummary().getTotalContentClicked();
 
+    student.overallProgress = 0;
     for (var summary in student.lessonSummary) {
       student.overallProgress += summary.progress;
     }
