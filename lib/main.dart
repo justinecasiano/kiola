@@ -3,6 +3,7 @@ import 'package:flutter_animate/flutter_animate.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:internet_connection_checker_plus/internet_connection_checker_plus.dart';
+import 'package:kiola/src/screens/introduction_screen.dart';
 import 'package:kiola/src/screens/loading_screen.dart';
 import 'package:media_kit/media_kit.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -47,7 +48,6 @@ class _AppState extends State<App> {
     } catch (e) {
       print(e);
     }
-
     await Future.delayed(1.seconds);
     return lessons.isEmpty || student == null ? null : 1;
   }
@@ -109,9 +109,12 @@ class Kiola extends StatelessWidget {
         debugShowCheckedModeBanner: false,
         routes: {
           '/': (context) => const SplashScreen(),
+          '/intro': (context) => const IntroductionScreen(),
           '/home': (context) => const HomeScreen(),
         },
-        initialRoute: '/',
+        initialRoute: context.read<StudentCubit>().state.username == null
+            ? '/'
+            : '/home',
       ),
     );
   }

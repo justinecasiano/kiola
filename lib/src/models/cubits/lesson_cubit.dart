@@ -10,7 +10,7 @@ class LessonCubit extends Cubit<Lesson> {
   LessonCubit({required this.lessons}) : super(lessons.first);
 
   void setLesson(BuildContext context, int number) {
-    context.read<StudentCubit>().setCurrentLesson(number - 1);
+    context.read<StudentCubit>().setCurrentLesson(number);
     emit(lessons.firstWhere((lesson) => lesson.number == number));
   }
 

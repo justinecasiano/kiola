@@ -2,13 +2,17 @@ import 'quiz_summary.dart';
 
 class LessonSummary {
   final int number;
+  bool isLocked;
+  String? unlockDate;
   double progress;
   String selectedContent;
   Map<String, dynamic> hasClicked;
-  QuizSummary quizSummary;
+  QuizSummary? quizSummary;
 
   LessonSummary({
     required this.number,
+    required this.isLocked,
+    required this.unlockDate,
     required this.progress,
     required this.selectedContent,
     required this.hasClicked,
@@ -27,16 +31,22 @@ class LessonSummary {
   factory LessonSummary.fromJson(Map<String, dynamic> json) {
     return LessonSummary(
       number: json['number'],
+      isLocked: json['isLocked'],
+      unlockDate: json['unlockDate'],
       progress: json['progress'],
       selectedContent: json['selectedContent'],
       hasClicked: json['hasClicked'],
-      quizSummary: QuizSummary.fromJson(json['quizSummary']),
+      quizSummary: json['quizSummary'] == null
+          ? json['quizSummary']
+          : QuizSummary.fromJson(json['quizSummary']),
     );
   }
 
   Map<String, dynamic> toJson() {
     return {
       'number': number,
+      'isLocked': isLocked,
+      'unlockDate': unlockDate,
       'progress': progress,
       'selectedContent': selectedContent,
       'hasClicked': hasClicked,
@@ -46,6 +56,8 @@ class LessonSummary {
 
   LessonSummary copyWith({
     int? number,
+    bool? isLocked,
+    String? unlockDate,
     double? progress,
     String? selectedContent,
     Map<String, dynamic>? hasClicked,
@@ -53,6 +65,8 @@ class LessonSummary {
   }) {
     return LessonSummary(
       number: number ?? this.number,
+      isLocked: isLocked ?? this.isLocked,
+      unlockDate: unlockDate ?? this.unlockDate,
       progress: progress ?? this.progress,
       selectedContent: selectedContent ?? this.selectedContent,
       hasClicked: hasClicked ?? this.hasClicked,

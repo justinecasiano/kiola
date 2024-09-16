@@ -5,6 +5,7 @@ import 'package:websafe_svg/websafe_svg.dart';
 import '../models/cubits/lesson_cubit.dart';
 import '../models/cubits/navigation_cubit.dart';
 import '../models/cubits/student_cubit.dart';
+import '../models/lesson_summary.dart';
 import '../models/student.dart';
 import '../widgets/custom_background.dart';
 import '../widgets/rounded_container.dart';
@@ -15,6 +16,83 @@ import '../constants/colors.dart' as colors;
 
 class DashboardScreen extends StatelessWidget {
   const DashboardScreen({super.key});
+
+  Widget createBadges(BuildContext context, List<LessonSummary> lessonSummary) {
+    return Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
+      ...lessonSummary
+          .where((summary) => summary.number > 0)
+          .map(
+            (summary) {
+              if (!summary.hasClicked.values.contains(true))
+                return [const SizedBox()];
+              return [
+                Text(
+                  'Lesson ${summary.number}',
+                  style: values.getTextStyle(context, 'titleMedium',
+                      color: colors.secondary, weight: FontWeight.bold),
+                ),
+                Wrap(
+                  alignment: WrapAlignment.center,
+                  children: [
+                    ...summary.hasClicked.entries.map(
+                      (content) {
+                        if (!content.value) return const SizedBox();
+                        String title = switch (content.key) {
+                          'pdf' => 'Module',
+                          'ppt' => 'Powerpoint',
+                          'video' => 'Video',
+                          _ => 'Quiz'
+                        };
+                        return Column(
+                          children: [
+                            Stack(
+                              alignment: Alignment.center,
+                              children: [
+                                WebsafeSvg.asset(
+                                    'assets/images/badges/${switch (content.key) {
+                                      'pdf' => '0',
+                                      'ppt' => '1',
+                                      'video' => '2',
+                                      _ => 'quiz'
+                                    }}.svg',
+                                    width: Utils.appGetHeight(context, 8),
+                                    fit: BoxFit.fitHeight),
+                                if (title == 'Quiz')
+                                  Positioned(
+                                    top: values.small,
+                                    child: Text(
+                                      '${summary.quizSummary!.score}',
+                                      style: values.getTextStyle(
+                                          context, 'headlineSmall',
+                                          color: colors.primary,
+                                          weight: FontWeight.bold),
+                                    ),
+                                  )
+                              ],
+                            ),
+                            Text(
+                              title,
+                              style: values.getTextStyle(context, 'titleSmall',
+                                  color: colors.accentDark,
+                                  weight: FontWeight.bold),
+                            )
+                          ],
+                        );
+                      },
+                    ).toList()
+                  ]
+                      .animate(delay: 100.ms, interval: 100.ms)
+                      .scale(duration: 200.ms)
+                      .slideX(duration: 200.ms),
+                ),
+                const SizedBox(height: values.small),
+              ];
+            },
+          )
+          .expand<Widget>((i) => i)
+          .toList(),
+    ]);
+  }
 
   Future<void> showUserProfile(BuildContext context) async {
     Student student = context.read<StudentCubit>().state;
@@ -28,45 +106,52 @@ class DashboardScreen extends StatelessWidget {
             style: values.getTextStyle(context, 'titleLarge',
                 color: colors.secondary, weight: FontWeight.bold),
           ),
-          content: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            mainAxisSize: MainAxisSize.min,
-            children: [
-              FittedBox(
-                fit: BoxFit.scaleDown,
-                child: Text(
-                  'Username: ${student.username ?? ''}',
+          content: SizedBox(
+            width: Utils.appGetWidth(context, 80),
+            height: Utils.appGetHeight(context, 50),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                FittedBox(
+                  fit: BoxFit.scaleDown,
+                  child: Text(
+                    'Username: ${student.username ?? ''}',
+                    style: values.getTextStyle(context, 'titleMedium',
+                        color: colors.secondary, weight: FontWeight.w600),
+                  ),
+                ),
+                const SizedBox(height: values.small - 5),
+                FittedBox(
+                  fit: BoxFit.scaleDown,
+                  child: Text(
+                    'Email: ${student.email ?? ''}',
+                    overflow: TextOverflow.ellipsis,
+                    style: values.getTextStyle(context, 'titleMedium',
+                        color: colors.secondary, weight: FontWeight.w600),
+                  ),
+                ),
+                const SizedBox(height: values.large),
+                Text(
+                  'Badges:',
                   style: values.getTextStyle(context, 'titleMedium',
                       color: colors.secondary, weight: FontWeight.w600),
                 ),
-              ),
-              const SizedBox(height: values.small - 5),
-              FittedBox(
-                fit: BoxFit.scaleDown,
-                child: Text(
-                  'Email: ${student.email ?? ''}',
-                  overflow: TextOverflow.ellipsis,
-                  style: values.getTextStyle(context, 'titleMedium',
-                      color: colors.secondary, weight: FontWeight.w600),
-                ),
-              ),
-              const SizedBox(height: values.large),
-              ...student
-                  .getQuizScores()
-                  .asMap()
-                  .entries
-                  .map(
-                    (score) => FittedBox(
-                      fit: BoxFit.scaleDown,
-                      child: Text(
-                        'Quiz ${score.key + 1}: ${score.value != null ? '${score.value} / 10' : 'Not yet taken'}',
-                        style: values.getTextStyle(context, 'titleMedium',
-                            color: colors.secondary, weight: FontWeight.w500),
-                      ),
+                const SizedBox(height: values.small - 5),
+                SizedBox(
+                  width: Utils.appGetWidth(context, 80),
+                  height: Utils.appGetHeight(context, 37),
+                  child: Scrollbar(
+                    thumbVisibility: true,
+                    child: ListView(
+                      shrinkWrap: true,
+                      children: [
+                        createBadges(context, student.lessonSummary),
+                      ],
                     ),
-                  )
-                  .toList(),
-            ],
+                  ),
+                ),
+              ],
+            ),
           ),
           actions: <Widget>[
             TextButton(
@@ -233,7 +318,7 @@ class DashboardInfo extends StatelessWidget {
                     ),
                     const SizedBox(height: values.small),
                     Text(
-                      Utils.getDateTime('EEEE, d MMMM, y'),
+                      Utils.getDateTime('EEEE, MMMM d, y'),
                       style: values.getTextStyle(context, 'bodyMedium',
                           color: colors.secondary, weight: FontWeight.w500),
                     ),
@@ -350,6 +435,7 @@ class Lessons extends StatelessWidget {
                     ),
                   ),
                   const SizedBox(height: values.large),
+                  const LessonCard(number: 0),
                   const LessonCard(number: 1),
                   const LessonCard(number: 2),
                   const LessonCard(number: 3),
@@ -383,92 +469,115 @@ class LessonCard extends StatelessWidget {
       },
     );
 
-    final hasVideo = Builder(
+    final contentsOverview = Builder(
       builder: (BuildContext context) {
-        return Text(
-          'Module, Powerpoint, ${context.read<LessonCubit>().getLesson(number).hasVideo ? 'Video, ' : ''}Quiz',
-          style: values.getTextStyle(context, 'bodySmall',
-              color: colors.accentLighter, weight: FontWeight.normal),
-        );
+        return (number == 0)
+            ? Text(
+                'Course Outline',
+                style: values.getTextStyle(context, 'bodySmall',
+                    color: colors.accentLighter, weight: FontWeight.normal),
+              )
+            : Text(
+                'Module, Powerpoint, ${context.read<LessonCubit>().getLesson(number).hasVideo ? 'Video, ' : ''}Quiz',
+                style: values.getTextStyle(context, 'bodySmall',
+                    color: colors.accentLighter, weight: FontWeight.normal),
+              );
       },
     );
 
     return GestureDetector(
-        onTap: () {
+      onTap: () {
+        context.read<StudentCubit>().setLessonLock(number);
+        Student student = context.read<StudentCubit>().state;
+
+        if (!student.shouldUnlockLessons &&
+            student.lessonSummary[number].isLocked &&
+            student.lessonSummary[number].unlockDate == null) {
+          Utils.showToastMessage('This lesson is locked');
+        } else if (!student.shouldUnlockLessons &&
+            student.lessonSummary[number].isLocked &&
+            student.lessonSummary[number].unlockDate != null) {
+          Utils.showToastMessage(
+              'This lesson will unlock at ${student.lessonSummary[number].unlockDate}');
+        } else {
           context.read<LessonCubit>().setLesson(context, number);
           context.read<NavigationCubit>().updateIndex(1);
-        },
-        child: Padding(
-          padding: const EdgeInsets.only(top: values.medium),
-          child: RoundedContainer(
-              padding: EdgeInsets.zero,
-              borderRadius: values.medium,
-              child: Stack(
-                children: [
-                  SizedBox(
-                    width: Utils.appGetWidth(context, 100),
-                    height: 115,
-                    child: Image.asset(
-                      fit: BoxFit.cover,
-                      'assets/images/thumbnails/lesson/lesson-$number.png',
+        }
+      },
+      child: Padding(
+        padding: const EdgeInsets.only(top: values.medium),
+        child: RoundedContainer(
+          padding: EdgeInsets.zero,
+          borderRadius: values.medium,
+          child: Stack(
+            children: [
+              SizedBox(
+                width: Utils.appGetWidth(context, 100),
+                height: 115,
+                child: Image.asset(
+                  fit: BoxFit.cover,
+                  'assets/images/thumbnails/lesson/lesson-$number.png',
+                ),
+              ),
+              Padding(
+                padding: const EdgeInsets.only(
+                    left: values.medium,
+                    right: values.medium,
+                    bottom: values.small),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    SizedBox(
+                      height: (number != 0) ? 100 : 120,
                     ),
-                  ),
-                  Padding(
-                    padding: const EdgeInsets.only(
-                        left: values.medium,
-                        right: values.medium,
-                        bottom: values.small),
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        const SizedBox(
-                          height: 100,
+                    if (number != 0)
+                      RoundedContainer(
+                        padding: const EdgeInsets.symmetric(
+                            vertical: values.small,
+                            horizontal: values.medium - 5),
+                        borderRadius: values.medium,
+                        child: Column(
+                          children: [
+                            Text(
+                              '0$number',
+                              style: values.getTextStyle(
+                                  context, 'headlineSmall',
+                                  color: colors.accentDark,
+                                  weight: FontWeight.bold),
+                            ),
+                            Text(
+                              'Lesson',
+                              style: values.getTextStyle(context, 'bodySmall',
+                                  color: colors.secondary,
+                                  weight: FontWeight.w600),
+                            ),
+                          ],
                         ),
-                        RoundedContainer(
-                          padding: const EdgeInsets.symmetric(
-                              vertical: values.small,
-                              horizontal: values.medium - 5),
-                          borderRadius: values.medium,
-                          child: Column(
-                            children: [
-                              Text(
-                                '0$number',
-                                style: values.getTextStyle(
-                                    context, 'headlineSmall',
-                                    color: colors.accentDark,
-                                    weight: FontWeight.bold),
-                              ),
-                              Text(
-                                'Lesson',
-                                style: values.getTextStyle(context, 'bodySmall',
-                                    color: colors.secondary,
-                                    weight: FontWeight.w600),
-                              ),
-                            ],
-                          ),
-                        ),
-                        const SizedBox(
-                          height: values.small,
-                        ),
-                        title,
-                        const SizedBox(
-                          height: values.small,
-                        ),
-                        Text(
-                          'Contents Overview',
-                          style: values.getTextStyle(context, 'bodySmall',
-                              color: colors.accentLighter,
-                              weight: FontWeight.normal),
-                        ),
-                        const SizedBox(
-                          height: values.small,
-                        ),
-                        hasVideo,
-                      ],
+                      ),
+                    const SizedBox(
+                      height: values.small,
                     ),
-                  )
-                ],
-              )),
-        ));
+                    title,
+                    const SizedBox(
+                      height: values.small,
+                    ),
+                    Text(
+                      'Contents Overview',
+                      style: values.getTextStyle(context, 'bodySmall',
+                          color: colors.accentLighter,
+                          weight: FontWeight.normal),
+                    ),
+                    const SizedBox(
+                      height: values.small,
+                    ),
+                    contentsOverview
+                  ],
+                ),
+              )
+            ],
+          ),
+        ),
+      ),
+    );
   }
 }

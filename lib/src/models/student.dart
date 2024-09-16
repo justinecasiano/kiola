@@ -8,6 +8,7 @@ class Student {
   String? email;
   final int? lastSaved;
   bool shouldUpdate;
+  bool shouldUnlockLessons;
   double overallProgress;
   int currentLesson;
   List<LessonSummary> lessonSummary;
@@ -18,6 +19,7 @@ class Student {
     required this.email,
     required this.lastSaved,
     required this.shouldUpdate,
+    required this.shouldUnlockLessons,
     required this.overallProgress,
     required this.currentLesson,
     required this.lessonSummary,
@@ -28,11 +30,16 @@ class Student {
   }
 
   QuizSummary getLessonQuizSummary() {
-    return getCurrentLessonSummary().quizSummary;
+    return getCurrentLessonSummary().quizSummary!;
   }
 
   List<int?> getQuizScores() {
-    return lessonSummary.map((summary) => summary.quizSummary.score).toList();
+    List<int?> scores = [];
+    for (var summary in lessonSummary) {
+      if (summary.number > 0) scores.add(summary.quizSummary!.score);
+    }
+
+    return scores;
   }
 
   factory Student.fromJson(Map<String, dynamic> json) {
@@ -42,6 +49,7 @@ class Student {
       email: json['email'],
       lastSaved: json['lastSaved'],
       shouldUpdate: json['shouldUpdate'],
+      shouldUnlockLessons: json['shouldUnlockLessons'],
       overallProgress: json['overallProgress'],
       currentLesson: json['currentLesson'],
       lessonSummary: json['lessonSummary']
@@ -58,6 +66,7 @@ class Student {
       'email': email,
       'lastSaved': Utils.getSecondsSinceEpoch(),
       'shouldUpdate': shouldUpdate,
+      'shouldUnlockLessons': shouldUnlockLessons,
       'overallProgress': overallProgress,
       'currentLesson': currentLesson,
       'lessonSummary': lessonSummary,
@@ -70,6 +79,7 @@ class Student {
     String? email,
     int? lastSaved,
     bool? shouldUpdate,
+    bool? shouldUnlockLessons,
     double? overallProgress,
     int? currentLesson,
     List<LessonSummary>? lessonSummary,
@@ -80,6 +90,7 @@ class Student {
       email: email ?? this.email,
       lastSaved: lastSaved ?? this.lastSaved,
       shouldUpdate: shouldUpdate ?? this.shouldUpdate,
+      shouldUnlockLessons: shouldUnlockLessons ?? this.shouldUnlockLessons,
       overallProgress: overallProgress ?? this.overallProgress,
       currentLesson: currentLesson ?? this.currentLesson,
       lessonSummary: lessonSummary ?? this.lessonSummary,

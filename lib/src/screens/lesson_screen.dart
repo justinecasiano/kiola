@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:kiola/src/models/lesson_summary.dart';
 import 'package:websafe_svg/websafe_svg.dart';
 import '../widgets/quiz_content.dart';
 import 'package:media_kit/media_kit.dart';
@@ -40,18 +41,25 @@ class LessonScreen extends StatelessWidget {
                   padding: EdgeInsets.symmetric(horizontal: values.medium),
                   child: Builder(
                     builder: (context) {
+                      LessonSummary lessonSummary = context
+                          .read<StudentCubit>()
+                          .state
+                          .getCurrentLessonSummary();
+
                       final contents = Column(
                         children: [
                           Header()
                               .animate(delay: 200.ms)
                               .fade(duration: 300.ms),
-                          selectedContent == 'default'
+                          selectedContent == 'default' &&
+                                  lessonSummary.number != 0
                               ? Contents()
                               : Expanded(child: Contents())
                         ],
                       );
 
-                      return selectedContent == 'default'
+                      return selectedContent == 'default' &&
+                              lessonSummary.number != 0
                           ? contents
                           : SizedBox(
                               height: Utils.appGetHeight(context, 85),
@@ -87,10 +95,13 @@ class Header extends StatelessWidget {
     final lessonNumber = BlocSelector<LessonCubit, Lesson, int>(
       selector: (state) => state.number,
       builder: (BuildContext context, int number) {
-        return Text(
-          'Lesson $number',
-          style: values.getTextStyle(context, 'titleLarge',
-              color: colors.primary, weight: FontWeight.w700),
+        return FittedBox(
+          fit: BoxFit.scaleDown,
+          child: Text(
+            (number != 0) ? 'Lesson $number' : 'Course Materials',
+            style: values.getTextStyle(context, 'titleLarge',
+                color: colors.primary, weight: FontWeight.w700),
+          ),
         );
       },
     );
@@ -122,10 +133,11 @@ class Header extends StatelessWidget {
 
     return Padding(
       padding: const EdgeInsets.only(
-          top: values.medium,
-          bottom: values.small,
-          left: values.small - 3,
-          right: values.small - 3),
+        top: values.medium,
+        bottom: values.small,
+        left: values.small - 3,
+        right: values.small - 3,
+      ),
       child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
         Row(
           children: [
@@ -138,7 +150,7 @@ class Header extends StatelessWidget {
                       lessonNumber,
                       const SizedBox(height: values.small),
                       Text(
-                        Utils.getDateTime('EEEE, d MMMM, y'),
+                        Utils.getDateTime('EEEE, MMMM d, y'),
                         style: values.getTextStyle(context, 'bodyMedium',
                             color: colors.primary, weight: FontWeight.w400),
                       ),
@@ -193,10 +205,11 @@ class Contents extends StatelessWidget {
       'video': VideoContent(
         title: lesson.title.toUpperCase(),
       ),
-      'quiz': QuizContent(
-        lessonNumber: lesson.number,
-        questions: lesson.questions,
-      )
+      if (lesson.number != 0)
+        'quiz': QuizContent(
+          lessonNumber: lesson.number,
+          questions: lesson.questions!,
+        )
     }[content]!;
   }
 
@@ -247,7 +260,6 @@ class DefaultContent extends StatelessWidget {
                 type: 'video',
                 title: 'Video for ${lesson.title}',
                 thumbnail: 'content/video.png',
-                number: lesson.number,
                 onTap: onTap(context, 'video'))
           ]
         : [];
@@ -261,33 +273,41 @@ class DefaultContent extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final List<Widget> contents = lesson.number == 0
+        ? [
+            ContentCard(
+              type: 'pdf',
+              title: 'Course Outline - PDF',
+              thumbnail: 'content/pdf/lesson-${lesson.number}.png',
+              onTap: onTap(context, 'pdf'),
+            ),
+          ]
+        : [
+            ContentCard(
+              type: 'pdf',
+              title: '${lesson.title} - PDF',
+              thumbnail: 'content/pdf/lesson-${lesson.number}.png',
+              onTap: onTap(context, 'pdf'),
+            ),
+            const SizedBox(height: values.medium),
+            ContentCard(
+              type: 'ppt',
+              title: '${lesson.title} - PPT',
+              thumbnail: 'content/ppt/lesson-${lesson.number}.png',
+              onTap: onTap(context, 'ppt'),
+            ),
+            ...hasVideoContent(context),
+            const SizedBox(height: values.medium),
+            ContentCard(
+              type: 'quiz',
+              title: 'Quiz for ${lesson.title}',
+              thumbnail: 'content/quiz.png',
+              onTap: onTap(context, 'quiz'),
+            )
+          ];
+
     return Column(
-      children: [
-        ContentCard(
-          type: 'pdf',
-          title: '${lesson.title} - PDF',
-          thumbnail: 'content/pdf/lesson-${lesson.number}.png',
-          number: lesson.number,
-          onTap: onTap(context, 'pdf'),
-        ),
-        const SizedBox(height: values.medium),
-        ContentCard(
-          type: 'ppt',
-          title: '${lesson.title} - PPT',
-          thumbnail: 'content/ppt/lesson-${lesson.number}.png',
-          number: lesson.number,
-          onTap: onTap(context, 'ppt'),
-        ),
-        ...hasVideoContent(context),
-        const SizedBox(height: values.medium),
-        ContentCard(
-          type: 'quiz',
-          title: 'Quiz for ${lesson.title}',
-          thumbnail: 'content/quiz.png',
-          number: lesson.number,
-          onTap: onTap(context, 'quiz'),
-        )
-      ]
+      children: contents
           .animate(delay: 1000.ms, interval: 100.ms)
           .scale(duration: 200.ms)
           .slideX(duration: 200.ms),
@@ -404,7 +424,6 @@ class ContentCard extends StatelessWidget {
   final String type;
   final String title;
   final String thumbnail;
-  final int number;
   final Function() onTap;
 
   const ContentCard({
@@ -412,7 +431,6 @@ class ContentCard extends StatelessWidget {
     required this.type,
     required this.title,
     required this.thumbnail,
-    required this.number,
     required this.onTap,
   });
 
@@ -423,56 +441,58 @@ class ContentCard extends StatelessWidget {
       child: RoundedContainer(
         padding: EdgeInsets.zero,
         borderRadius: values.medium,
-        child: Stack(children: [
-          SizedBox(
-              width: double.infinity,
-              height: 115,
-              child: Image.asset('assets/images/thumbnails/$thumbnail',
-                  fit: BoxFit.fitWidth)),
-          Padding(
-            padding: const EdgeInsets.only(
-                left: values.small + 5,
-                right: values.small + 5,
-                bottom: values.small),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                const SizedBox(height: 95),
-                BlocSelector<StudentCubit, Student, String>(
-                  selector: (state) =>
-                      state.getCurrentLessonSummary().getContentStatus(type),
-                  builder: (context, status) {
-                    return RoundedContainer(
-                      color: status == 'Pending'
-                          ? colors.primary
-                          : colors.accentDark,
-                      child: Text(
-                        status,
-                        textAlign: TextAlign.center,
-                        style: values.getTextStyle(context, 'titleSmall',
-                            color: status == 'Pending'
-                                ? colors.accentDark
-                                : colors.primary,
-                            weight: FontWeight.bold),
-                      )
-                          .animate(delay: 2200.ms)
-                          .scaleXY(end: 1.1, duration: 500.ms)
-                          .shake(duration: 750.ms)
-                          .scaleXY(delay: 500.ms, end: 0.9, duration: 500.ms),
-                    );
-                  },
-                ),
-                const SizedBox(height: values.small - 5),
-                Text(
-                  title,
-                  textAlign: TextAlign.center,
-                  style: values.getTextStyle(context, 'titleMedium',
-                      color: colors.secondary, weight: FontWeight.w500),
-                ),
-              ],
-            ),
-          )
-        ]),
+        child: Stack(
+          children: [
+            SizedBox(
+                width: double.infinity,
+                height: 115,
+                child: Image.asset('assets/images/thumbnails/$thumbnail',
+                    fit: BoxFit.fitWidth)),
+            Padding(
+              padding: const EdgeInsets.only(
+                  left: values.small + 5,
+                  right: values.small + 5,
+                  bottom: values.small),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  const SizedBox(height: 95),
+                  BlocSelector<StudentCubit, Student, String>(
+                    selector: (state) =>
+                        state.getCurrentLessonSummary().getContentStatus(type),
+                    builder: (context, status) {
+                      return RoundedContainer(
+                        color: status == 'Pending'
+                            ? colors.primary
+                            : colors.accentDark,
+                        child: Text(
+                          status,
+                          textAlign: TextAlign.center,
+                          style: values.getTextStyle(context, 'titleSmall',
+                              color: status == 'Pending'
+                                  ? colors.accentDark
+                                  : colors.primary,
+                              weight: FontWeight.bold),
+                        )
+                            .animate(delay: 2200.ms)
+                            .scaleXY(end: 1.1, duration: 500.ms)
+                            .shake(duration: 750.ms)
+                            .scaleXY(delay: 500.ms, end: 0.9, duration: 500.ms),
+                      );
+                    },
+                  ),
+                  const SizedBox(height: values.small - 5),
+                  Text(
+                    title,
+                    textAlign: TextAlign.center,
+                    style: values.getTextStyle(context, 'titleMedium',
+                        color: colors.secondary, weight: FontWeight.w500),
+                  ),
+                ],
+              ),
+            )
+          ],
+        ),
       ),
     );
   }

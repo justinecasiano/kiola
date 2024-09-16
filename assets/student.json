@@ -4,11 +4,25 @@
     "email": null,
     "lastSaved": null,
     "shouldUpdate": false,
+    "shouldUnlockLessons": false,
     "overallProgress": 0.0,
     "currentLesson": 0,
     "lessonSummary": [
         {
+            "number": 0,
+            "isLocked": false,
+            "unlockDate": null,
+            "progress": 0.0,
+            "selectedContent": "default",
+            "hasClicked": {
+                "pdf": false
+            },
+            "quizSummary": null
+        },
+        {
             "number": 1,
+            "isLocked": false,
+            "unlockDate": null,
             "progress": 0.0,
             "selectedContent": "default",
             "hasClicked": {
@@ -34,20 +48,22 @@
                 ],
                 "remainingTime": [
                     10,
+                    15,
                     10,
                     10,
-                    10,
-                    10,
-                    10,
-                    10,
-                    10,
-                    10,
-                    10
+                    15,
+                    15,
+                    15,
+                    15,
+                    15,
+                    15
                 ]
             }
         },
         {
             "number": 2,
+            "isLocked": true,
+            "unlockDate": null,
             "progress": 0.0,
             "selectedContent": "default",
             "hasClicked": {
@@ -73,12 +89,12 @@
                 ],
                 "remainingTime": [
                     10,
-                    10,
-                    10,
-                    10,
-                    10,
-                    10,
-                    10,
+                    15,
+                    15,
+                    15,
+                    15,
+                    15,
+                    15,
                     10,
                     10,
                     10
@@ -87,6 +103,8 @@
         },
         {
             "number": 3,
+            "isLocked": true,
+            "unlockDate": null,
             "progress": 0.0,
             "selectedContent": "default",
             "hasClicked": {
@@ -112,10 +130,10 @@
                     null
                 ],
                 "remainingTime": [
-                    10,
-                    10,
-                    10,
-                    10,
+                    15,
+                    15,
+                    15,
+                    15,
                     10,
                     10,
                     10,
@@ -127,6 +145,8 @@
         },
         {
             "number": 4,
+            "isLocked": true,
+            "unlockDate": null,
             "progress": 0.0,
             "selectedContent": "default",
             "hasClicked": {
@@ -166,6 +186,8 @@
         },
         {
             "number": 5,
+            "isLocked": true,
+            "unlockDate": null,
             "progress": 0.0,
             "selectedContent": "default",
             "hasClicked": {
@@ -196,7 +218,7 @@
                     10,
                     10,
                     10,
-                    10,
+                    15,
                     10,
                     10,
                     10
@@ -205,6 +227,8 @@
         },
         {
             "number": 6,
+            "isLocked": true,
+            "unlockDate": null,
             "progress": 0.0,
             "selectedContent": "default",
             "hasClicked": {
@@ -230,14 +254,14 @@
                 ],
                 "remainingTime": [
                     10,
+                    15,
+                    15,
+                    10,
+                    15,
                     10,
                     10,
                     10,
-                    10,
-                    10,
-                    10,
-                    10,
-                    10,
+                    15,
                     10
                 ]
             }

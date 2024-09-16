@@ -5,10 +5,10 @@ Icon getIcon(String name, {bool selected = false}) {
   const icons = {
     'dashboard': Icons.dashboard,
     'lesson': Icons.library_books,
-    'settings': Icons.settings,
+    'acknowledgements': Icons.workspace_premium,
     'dashboard-outline': Icons.dashboard_outlined,
     'lesson-outline': Icons.library_books_outlined,
-    'settings-outline': Icons.settings_outlined
+    'acknowledgements-outline': Icons.workspace_premium_outlined
   };
 
   name = selected ? name : '$name-outline';

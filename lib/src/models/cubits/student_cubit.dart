@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:intl/intl.dart';
+import 'package:kiola/src/models/lesson_summary.dart';
 import 'package:nanoid/nanoid.dart';
 import '/src/models/quiz_summary.dart';
 
@@ -44,16 +46,41 @@ class StudentCubit extends Cubit<Student> {
 
   void setLessonProgress() {
     Student student = state.copyWith();
-    student.lessonSummary[state.currentLesson].progress =
+    double lessonProgress =
         state.getCurrentLessonSummary().getTotalContentClicked();
+    student.lessonSummary[state.currentLesson].progress = lessonProgress;
+    setOverallProgress(student);
+    setNextLessonUnlockDate(student);
+  }
 
+  void setOverallProgress(Student student) {
     student.overallProgress = 0;
     for (var summary in student.lessonSummary) {
       student.overallProgress += summary.progress;
     }
     student.overallProgress /= student.lessonSummary.length;
-
     emit(student);
+  }
+
+  void setNextLessonUnlockDate(Student student) {
+    if (student.lessonSummary[state.currentLesson].progress == 100) {
+      int nextLesson = student.currentLesson + 1;
+      if (nextLesson < student.lessonSummary.length) {
+        emit(state.copyWith()
+          ..lessonSummary[nextLesson].unlockDate = DateFormat('yMd')
+              .format(DateTime.now().add(const Duration(days: 14))));
+      }
+    }
+  }
+
+  void setLessonLock(int number) {
+    LessonSummary lessonSummary = state.lessonSummary[number];
+    if (lessonSummary.unlockDate == DateFormat('yMd').format(DateTime.now()))
+      emit(state.copyWith()..lessonSummary[number].isLocked = false);
+  }
+
+  void setShouldUnlockLessons(bool shouldUnlockLessons) {
+    emit(state.copyWith()..shouldUnlockLessons = shouldUnlockLessons);
   }
 
   void setShouldUpdate(bool shouldUpdate) {
@@ -62,7 +89,7 @@ class StudentCubit extends Cubit<Student> {
 
   void setQuizStatus(String status) {
     emit(state.copyWith()
-      ..lessonSummary[state.currentLesson].quizSummary.status = status);
+      ..lessonSummary[state.currentLesson].quizSummary!.status = status);
   }
 
   void moveCurrentNumber(BuildContext context) {
@@ -98,12 +125,12 @@ class StudentCubit extends Cubit<Student> {
 
   int calculateQuizScore(List<int> correctAnswers) {
     List<int?> answers =
-        state.lessonSummary[state.currentLesson].quizSummary.answers;
+        state.lessonSummary[state.currentLesson].quizSummary!.answers;
 
     int score = 0;
-    answers.forEach((answer) {
-      if (answer == correctAnswers[answers.indexOf(answer)]) score++;
-    });
+    for (var i = 0; i < answers.length; i++) {
+      if (answers[i] == correctAnswers[i]) score++;
+    }
 
     return score;
   }

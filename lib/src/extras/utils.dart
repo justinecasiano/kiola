@@ -40,7 +40,7 @@ class Utils {
     return {
       'username':
           RegExp(r'^[a-zA-Z0-9]{4}[a-zA-Z0-9\s.]{0,16}$').hasMatch(value),
-      'email': RegExp(r'^[a-zA-Z0-9.]{4,}@[a-zA-Z0-9.]+\.[a-zA-Z0-9.]{3,}$')
+      'email': RegExp(r'^[a-zA-Z0-9.]{3,}@[a-zA-Z0-9.]+\.[a-zA-Z0-9.]{3,}$')
           .hasMatch(value),
     }[info];
   }
@@ -80,9 +80,7 @@ class Utils {
   }
 
   static Future<bool> hasInternetConnection() async {
-    bool result = await InternetConnection().hasInternetAccess;
-    result ? print('Connected to the internet') : print('No internet access');
-    return result;
+    return InternetConnection().hasInternetAccess;
   }
 
   static Future<void> handleRedirect(
@@ -119,7 +117,6 @@ class Utils {
     );
 
     if (response.statusCode == 302) await handleRedirect(dio, response);
-    print(response.data);
 
     if (response.data['status'] == 'success') {
       context.read<StudentCubit>().setShouldUpdate(false);
@@ -127,7 +124,6 @@ class Utils {
     } else if (retries > 0) {
       updateRemoteStudentData(context, student, retries: retries - 1);
     } else {
-      print('Failed to update remote student data, after 5 retries');
       showToastMessage('Failed saving progress');
     }
   }

@@ -7,7 +7,6 @@ import '../constants/colors.dart' as colors;
 import '../constants/values.dart' as values;
 import '../extras/utils.dart';
 import '../models/cubits/student_cubit.dart';
-import 'rounded_container.dart';
 
 class Register extends StatefulWidget {
   const Register({super.key});
@@ -161,7 +160,7 @@ class _RegisterState extends State<Register> {
                         () {
                           Navigator.pop(context);
                           Navigator.restorablePushReplacementNamed(
-                              context, '/home');
+                              context, '/intro');
                         },
                       );
                     } else {

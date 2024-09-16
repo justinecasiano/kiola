@@ -1,14 +1,12 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_animate/flutter_animate.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import '../models/student.dart';
 import '/src/models/cubits/student_cubit.dart';
 import '../extras/utils.dart';
 import '../models/cubits/navigation_cubit.dart';
-import '../models/quiz_summary.dart';
 import 'dashboard_screen.dart';
 import 'lesson_screen.dart';
-import 'settings_screen.dart';
+import 'acknowledgements_screen.dart';
 import '../constants/values.dart' as values;
 import '../constants/colors.dart' as colors;
 import '../constants/icons.dart' as icons;
@@ -25,7 +23,7 @@ class _HomeScreenState extends State<HomeScreen> {
   bool canPop = false;
 
   final List<NavigationDestination> destinations =
-      ['dashboard', 'lesson', 'settings']
+      ['dashboard', 'lesson', 'acknowledgements']
           .map((icon) => NavigationDestination(
                 label: '',
                 icon: icons.getIcon(icon),
@@ -38,14 +36,16 @@ class _HomeScreenState extends State<HomeScreen> {
     List<Widget> screens = [
       DashboardScreen(),
       LessonScreen(),
-      SettingsScreen(),
+      AcknowledgementsScreen(),
     ];
 
     return PopScope(
       canPop: canPop,
       onPopInvoked: (shouldPop) {
-        if (context.read<StudentCubit>().state.getLessonQuizSummary().status !=
-            'active') {
+        Student student = context.read<StudentCubit>().state;
+
+        if (student.getCurrentLessonSummary().number == 0 ||
+            student.getLessonQuizSummary().status != 'active') {
           if (context.read<NavigationCubit>().state != 0) {
             context.read<NavigationCubit>().updateIndex(0);
           } else {
@@ -84,12 +84,12 @@ class CustomNavigationBar extends StatelessWidget {
 
   Function(int) onDestinationSelected(BuildContext context) {
     return ((int index) {
-      QuizSummary quiz =
-          context.read<StudentCubit>().state.getLessonQuizSummary();
-
-      if (quiz.status == 'active') {
-        Utils.showToastMessage('Quiz is active');
-        return;
+      Student student = context.read<StudentCubit>().state;
+      if (student.currentLesson > 0) {
+        if (student.getLessonQuizSummary().status == 'active') {
+          Utils.showToastMessage('Quiz is active');
+          return;
+        }
       }
       context.read<NavigationCubit>().updateIndex(index);
     });

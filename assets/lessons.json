@@ -1,5 +1,11 @@
 [
     {
+        "number": 0,
+        "title": "Course Outline",
+        "hasVideo": false,
+        "questions": null
+    },
+    {
         "number": 1,
         "title": "Introduction to Dance",
         "hasVideo": false,

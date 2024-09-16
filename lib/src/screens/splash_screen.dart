@@ -4,7 +4,6 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:kiola/src/models/student.dart';
 import 'package:websafe_svg/websafe_svg.dart';
 
-import '../extras/utils.dart';
 import '../models/cubits/student_cubit.dart';
 import '../widgets/register.dart';
 import '../constants/colors.dart' as colors;
@@ -84,6 +83,7 @@ class _SplashScreenState extends State<SplashScreen>
                   },
                   style: ElevatedButton.styleFrom(
                     backgroundColor: colors.primary,
+                    overlayColor: colors.accentDark,
                     padding: EdgeInsets.symmetric(
                         horizontal: values.medium, vertical: values.small),
                     shape: RoundedRectangleBorder(
